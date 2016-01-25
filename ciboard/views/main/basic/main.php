@@ -1,0 +1,33 @@
+<?php
+$k = 0;
+$is_open = FALSE;
+if (element('board_list', $view))
+{
+	foreach (element('board_list', $view) as $key => $board)
+	{
+		$config = array(
+			'skin' => 'basic',
+			'brd_key' => element('brd_key', $board),
+			'limit' => 5,
+			'length' => 40,
+			'is_gallery' => '',
+			'image_width' => '',
+			'image_height' => '',
+			'cache_minute' => 1,
+		);
+		if($k % 2 == 0) {
+			echo '<div>';
+			$is_open = TRUE;
+		}
+		echo $this->board->latest($config);
+		if($k % 2 == 1) {
+			echo '</div>';
+			$is_open = FALSE;
+		}
+		$k++;
+	}
+}
+if($is_open) {
+	echo '</div>';
+	$is_open = FALSE;
+}
