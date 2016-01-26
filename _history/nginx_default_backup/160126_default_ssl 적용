@@ -1,0 +1,139 @@
+##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# http://wiki.nginx.org/Pitfalls
+# http://wiki.nginx.org/QuickStart
+# http://wiki.nginx.org/Configuration
+#
+# Generally, you will want to move this file somewhere, and start with a clean
+# file but keep this around for reference. Or just disable in sites-enabled.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+##
+
+# Default server configuration
+#
+server {
+	listen 80;
+	server_name zzing.co.kr;
+	return 301 https://$host$request_uri;
+}
+
+
+# Virtual Host configuration for example.com
+#
+# You can move that to a different file under sites-available/ and symlink that
+# to sites-enabled/ to enable it.
+#
+#
+
+# 151222 나중에 서브도메인 딸때 추가하면 되는 설정
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name will.zzing.co.kr;
+    
+    return 301 https://$host$request_uri;
+}
+
+server{
+	listen 443 ssl;
+    server_name zzing.co.kr;
+    ssl_certificate /etc/letsencrypt/live/zzing.co.kr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/zzing.co.kr/privkey.pem;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+	ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.php index.html index.htm index.nginx-debian.html;
+
+	#151218 413 error 후 추가
+	client_max_body_size 20M;
+
+	location / {
+		try_files $uri $uri/ =404;		
+		#try_files $uri $uri/ /ciboard/index.php?/$request_uri;
+	}
+
+	#151222 _ CI_BOARD module Add
+	location /ciboard{
+                root /var/www/html;
+                #index index.html index.htm index.php;
+		try_files $uri $uri/ /ciboard/index.php?/$request_uri;
+
+                location ~ ^/ciboard/(.+\.php)$ {
+                        try_files $uri =404;
+                        root /var/www/html/;
+
+                        fastcgi_pass unix:/var/run/php5-fpm.sock;
+                        fastcgi_index index.php;
+                        fastcgi_param SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+                        include fastcgi_params;
+                }
+
+                location ~* ^/ciboard/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+                        root /var/www/html/;
+                }
+        }
+
+	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+	#
+	location ~ \.php$ {
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+
+		# 151218 ci 보드 설치로 수정
+		#fastcgi_pass 127.0.0.1:9000;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+		include fastcgi_params;
+	}
+
+	# deny access to .htaccess files, if Apache's document root
+	# concurs with nginx's one
+	#
+	location ~ /\.ht {
+		deny all;
+	}
+
+	location /phpmyadmin {
+		root /usr/share/;
+		index index.php index.html index.htm;
+
+		location ~ ^/phpmyadmin/(.+\.php)$ {
+			try_files $uri =404;
+			root /usr/share/;
+
+			fastcgi_pass unix:/var/run/php5-fpm.sock;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME /usr/share$fastcgi_script_name;
+			include fastcgi_params;
+		}
+
+		location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+			root /usr/share/;
+		}
+	}
+
+	#151201 phpMyAdmin Module Add
+	location /phpMyAdmin {
+		rewrite ^/* /phpmyadmin last;
+	}
+
+}
+
+
+server {
+    listen 443 ssl;
+    server_name will.zzing.co.kr;
+    
+	root /var/www/html/will;
+	index index.html;
+
+	location /will {
+		try_files $uri $uri/ =404;
+	}
+}
