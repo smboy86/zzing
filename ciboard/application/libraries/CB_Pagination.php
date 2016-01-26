@@ -40,46 +40,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Pagination Class
  *
- * @package		CodeIgniter
+ * @package        CodeIgniter
  * @subpackage	Libraries
  * @category	Pagination
- * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/pagination.html
+ * @author        EllisLab Dev Team
+ * @link        http://codeigniter.com/user_guide/libraries/pagination.html
  */
-class CB_Pagination extends CI_Pagination {
+class CB_Pagination extends CI_Pagination
+{
 
+    public $num_links = 5;
+    public $cur_page = 1;
+    public $use_page_numbers = true;
+    public $first_link = '<span aria-hidden="true">&laquo;</span>';
+    public $next_link = '<span aria-hidden="true">&gt;</span>';
+    public $prev_link = '<span aria-hidden="true">&lt;</span>';
+    public $last_link = '<span aria-hidden="true">&raquo;</span>';
+    public $first_tag_open = '<li>';
+    public $first_tag_close = '</li>';
+    public $last_tag_open = '<li>';
+    public $last_tag_close = '</li>';
+    public $cur_tag_open = '<li class="active"><a>';
+    public $cur_tag_close = '</a></li>';
+    public $next_tag_open = '<li>';
+    public $next_tag_close = '</li>';
+    public $prev_tag_open = '<li>';
+    public $prev_tag_close = '</li>';
+    public $full_tag_open = '<ul class="pagination">';
+    public $full_tag_close = '</ul>';
+    public $num_tag_open = '<li>';
+    public $num_tag_close = '</li>';
+    public $page_query_string = true;
+    public $query_string_segment = 'page';
 
-
-	public $num_links		= 5;
-	public $cur_page		 = 1;
-	public $use_page_numbers = TRUE;
-	public $first_link			= '<span aria-hidden="true">&laquo;</span>';
-	public $next_link			= '<span aria-hidden="true">&gt;</span>';
-	public $prev_link			= '<span aria-hidden="true">&lt;</span>';
-	public $last_link			= '<span aria-hidden="true">&raquo;</span>';
-	public $first_tag_open		= '<li>';
-	public $first_tag_close	= '</li>';
-	public $last_tag_open		= '<li>';
-	public $last_tag_close		= '</li>';
-	public $cur_tag_open		= '<li class="active"><a>';
-	public $cur_tag_close		= '</a></li>';
-	public $next_tag_open		= '<li>';
-	public $next_tag_close		= '</li>';
-	public $prev_tag_open		= '<li>';
-	public $prev_tag_close		= '</li>';
-	public $full_tag_open		= '<ul class="pagination">';
-	public $full_tag_close		= '</ul>';
-	public $num_tag_open		= '<li>';
-	public $num_tag_close		= '</li>';
-	public $page_query_string	= TRUE;
-	public $query_string_segment = 'page';
-
-	/**
-	 * Constructor
-	 */
-	function __construct()
-	{
-		parent::__construct();
-	}
-
+    /**
+     * Constructor
+     */
+    function __construct()
+    {
+        parent::__construct();
+    }
 }

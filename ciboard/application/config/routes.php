@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Please see the user guide for complete details:
 |
-|	http://codeigniter.com/user_guide/general/routing.html
+|	https://codeigniter.com/user_guide/general/routing.html
 |
 | -------------------------------------------------------------------------
 | RESERVED ROUTES
@@ -55,7 +55,7 @@ $route['404_override'] = '';
 
 $route[config_item('uri_segment_admin') . '/preview/adminshow/(.+)'] = "$1";
 
-if (config_item('uri_segment_admin') != 'admin') {
+if (config_item('uri_segment_admin') !== 'admin') {
 	$route['admin'] = '_show404notfounderrorpage';
 	$route[config_item('uri_segment_admin')] = 'admin';
 
@@ -64,9 +64,9 @@ if (config_item('uri_segment_admin') != 'admin') {
 }
 
 $route[config_item('uri_segment_board') . '/([a-zA-Z0-9_-]+)']		= "board_post/lists/$1";
-if (strtoupper(config_item('uri_segment_post_type')) == 'B') {
+if (strtoupper(config_item('uri_segment_post_type')) === 'B') {
 	$route['([a-zA-Z0-9_-]+)/' . config_item('uri_segment_post')			. '/([0-9]+)']					= "board_post/post/$2";
-} else if (strtoupper(config_item('uri_segment_post_type')) == 'C') {
+} else if (strtoupper(config_item('uri_segment_post_type')) === 'C') {
 	$route[config_item('uri_segment_post') . '/([a-zA-Z0-9_-]+)/([0-9]+)']					= "board_post/post/$2";
 } else {
 	$route[config_item('uri_segment_post') . '/([0-9]+)']					= "board_post/post/$1";
@@ -80,5 +80,3 @@ $route[config_item('uri_segment_document') . '/([a-zA-Z0-9_-]+)']		= "document/i
 $route[config_item('uri_segment_faq') . '/([a-zA-Z0-9_-]+)']		= "faq/index/$1";
 $route['profile/([a-zA-Z0-9_-]+)'] = "profile/index/$1";
 $route['print/([0-9]+)']							= "board_post/post/$1/print";
-
-

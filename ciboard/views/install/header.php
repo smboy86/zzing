@@ -12,22 +12,20 @@
 <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- start javascript -->
-<!-- end javascript -->
 <div class="wrapper">
-	<!-- header start -->
-	<div class="header">
-		<h1>CIBOARD</h1>
-		<span class="version">Version <?php echo CB_VERSION; ?> CIBoard Installation</span>
-	</div>
-	<!-- header end -->
+    <!-- header start -->
+    <div class="header">
+        <h1>CIBOARD</h1>
+        <span class="version">Version <?php echo CB_VERSION; ?> CIBoard Installation</span>
+    </div>
+    <!-- header end -->
     <!-- main start -->
     <div class="main">
-    	<ul class="menu">
-    		<li <?php echo ($install_step == 1)?'class="active"':'';?>>약관동의</li>
-    		<li <?php echo ($install_step == 2)?'class="active"':'';?>>기본환경체크</li>
-    		<li <?php echo ($install_step == 3)?'class="active"':'';?>>CONFIG 설정파일체크</li>
-    		<li <?php echo ($install_step == 4)?'class="active"':'';?>>디비설정체크</li>
-    		<li <?php echo ($install_step == 5)?'class="active"':'';?>>관리자정보입력</li>
-    		<li <?php echo ($install_step == 6)?'class="active"':'';?>>설치</li>
-    	</ul>
+        <ul class="menu">
+            <li <?php echo ($install_step === 1) ? 'class="active"' : '';?>>약관동의</li>
+            <li <?php echo ($install_step === 2) ? 'class="active"' : '';?>>기본환경체크</li>
+            <li <?php echo ($install_step === 3) ? 'class="active"' : '';?>>CONFIG 설정파일체크</li>
+            <li <?php echo ($install_step === 4) ? 'class="active"' : '';?>>디비설정체크</li>
+            <li <?php echo ($install_step === 5) ? 'class="active"' : '';?>>관리자정보입력</li>
+            <li <?php echo ($install_step === 6) ? 'class="active"' : '';?>>설치</li>
+        </ul>

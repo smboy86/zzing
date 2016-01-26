@@ -9,115 +9,121 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author CIBoard (develop@ciboard.co.kr)
  */
 
-class Config_model extends CB_Model {
+class Config_model extends CB_Model
+{
 
-	/**
-	*  테이블명
-	*/
-	public $_table = 'config';
+    /**
+     * 테이블명
+     */
+    public $_table = 'config';
 
-	/**
-	*  사용되는 테이블의 프라이머리키
-	*/
-	public $meta_key = 'cfg_key';
+    /**
+     * 사용되는 테이블의 프라이머리키
+     */
+    public $meta_key = 'cfg_key';
 
-	public $meta_value = 'cfg_value';
+    public $meta_value = 'cfg_value';
 
-	public $cache_name= 'config-model-get'; // 캐시 사용시 프리픽스
+    public $cache_name= 'config-model-get'; // 캐시 사용시 프리픽스
 
-	public $cache_time = 86400 ; // 캐시 저장시간
+    public $cache_time = 86400; // 캐시 저장시간
 
-	function __construct()
-	{
-		parent::__construct();
-	}
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-	function get_all_meta()
-	{
 
-		$cachename = $this->cache_name;
-		if ( ! $result = $this->cache->get($cachename)) {
-			$result = array();
-			$res = $this->get();
-			if ($res && is_array($res)) {
-				foreach ($res as $val) {
-					$result[$val[$this->meta_key]] = $val[$this->meta_value];
-				}
-			}
+    public function get_all_meta()
+    {
+        $cachename = $this->cache_name;
+        if ( ! $result = $this->cache->get($cachename)) {
+            $result = array();
+            $res = $this->get();
+            if ($res && is_array($res)) {
+                foreach ($res as $val) {
+                    $result[$val[$this->meta_key]] = $val[$this->meta_value];
+                }
+            }
+            $this->cache->save($cachename, $result, $this->cache_time);
+        }
+        return $result;
+    }
 
-			$this->cache->save($cachename, $result, $this->cache_time);
 
-		}
-		return $result;
+    public function save($savedata = '')
+    {
+        if ($savedata && is_array($savedata)) {
+            foreach ($savedata as $column => $value) {
+                $this->meta_update($column, $value);
+            }
+        }
+        $this->cache->delete($this->cache_name);
+    }
 
-	}
 
-	function save($savedata='')
-	{
+    public function meta_update($column = '', $value = false)
+    {
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
 
-		if ($savedata && is_array($savedata)) {
-			foreach ($savedata as $column => $value) {
-					$this->meta_update($column, $value);
-			}
-		}
-		$this->cache->delete($this->cache_name);
+        $old_value = $this->item($column);
+        if (empty($value)) {
+            $value = '';
+        }
+        if ($value === $old_value) {
+            return false;
+        }
 
-	}
+        if (false === $old_value) {
+            return $this->add_meta($column, $value);
+        }
 
-	function meta_update($column='', $value=FALSE)
-	{
-		$column = trim($column);
-		if ( ! $column) return FALSE;
+        return $this->update_meta($column, $value);
+    }
 
-		$old_value = $this->item($column);
-		if (empty($value)) {
-			$value = '';
-		}
-		if ($value === $old_value)
-			return FALSE;
 
-		if (FALSE === $old_value)
-			return $this->add_meta($column, $value);
+    public function item($column = '')
+    {
+        if (empty($column)) {
+            return false;
+        }
 
-		return $this->update_meta($column, $value);
+        $result = $this->get_all_meta();
 
-	}
+        return isset($result[ $column ]) ? $result[ $column ] : false;
+    }
 
-	function item($column='')
-	{
-		if ( ! $column) return FALSE;
 
-		$result = $this->get_all_meta();
+    public function add_meta($column = '', $value = '')
+    {
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
+        $updatedata = array(
+            'cfg_key' => $column,
+            'cfg_value' => $value,
+        );
+        $this->db->replace($this->_table, $updatedata);
 
-		return isset($result[ $column ]) ? $result[ $column ] :  FALSE;
-	}
+        return true;
+    }
 
-	function add_meta($column='', $value='')
-	{
-		$column = trim($column);
-		if ( ! $column) return FALSE;
-		
-		$updatedata = array(
-			'cfg_key' => $column,
-			'cfg_value' => $value,
-		);
-		$this->db->replace($this->_table, $updatedata);
 
-		return TRUE;
+    public function update_meta($column = '', $value = '')
+    {
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
 
-	}
+        $this->db->where($this->meta_key, $column);
+        $data = array($this->meta_value => $value);
+        $this->db->update($this->_table, $data);
 
-	function update_meta($column='', $value='')
-	{
-		$column = trim($column);
-		if ( ! $column) return FALSE;
-
-		$this->db->where($this->meta_key, $column);
-		$data = array($this->meta_value => $value);
-		$this->db->update($this->_table, $data);
-
-		return TRUE;
-
-	}
-
+        return true;
+    }
 }

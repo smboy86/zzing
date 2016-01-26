@@ -39,134 +39,134 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('set_value'))
 {
-	/**
-	 * Form Value
-	 *
-	 * Grabs a value from the POST array for the specified field so you can
-	 * re-populate an input field or textarea. If Form Validation
-	 * is active it retrieves the info from the validation class
-	 *
-	 * @param	string	$field		Field name
-	 * @param	string	$default	Default value
-	 * @param	bool	$html_escape	Whether to escape HTML special characters or not
-	 * @return	string
-	 */
-	function set_value($field, $default = '', $html_escape = TRUE)
-	{
+    /**
+     * Form Value
+     *
+     * Grabs a value from the POST array for the specified field so you can
+     * re-populate an input field or textarea. If Form Validation
+     * is active it retrieves the info from the validation class
+     *
+     * @param	string	$field        Field name
+     * @param	string	$default	Default value
+     * @param	bool	$html_escape	Whether to escape HTML special characters or not
+     * @return	string
+     */
+    function set_value($field, $default = '', $html_escape = TRUE)
+    {
 
-		if (isset($_POST[$field])) {
-			return ($html_escape) ? html_escape($_POST[$field]) : $_POST[$field];
-		} else {
-			return ($html_escape) ? html_escape($default) : $default;
-		}
-	}
+        if (isset($_POST[$field])) {
+            return ($html_escape) ? html_escape($_POST[$field]) : $_POST[$field];
+        } else {
+            return ($html_escape) ? html_escape($default) : $default;
+        }
+    }
 }
 
 if ( ! function_exists('set_select'))
 {
-	/**
-	 * Set Select
-	 *
-	 * Let's you set the selected value of a <select> menu via data in the POST array.
-	 * If Form Validation is active it retrieves the info from the validation class
-	 *
-	 * @param	string
-	 * @param	string
-	 * @param	bool
-	 * @return	string
-	 */
-	function set_select($field, $value = '', $default = FALSE)
-	{
-		$CI =& get_instance();
+    /**
+     * Set Select
+     *
+     * Let's you set the selected value of a <select> menu via data in the POST array.
+     * If Form Validation is active it retrieves the info from the validation class
+     *
+     * @param	string
+     * @param	string
+     * @param	bool
+     * @return	string
+     */
+    function set_select($field, $value = '', $default = FALSE)
+    {
+        $CI =& get_instance();
 
-		if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
-			return $CI->form_validation->set_select($field, $value, $default);
-		} else if (($input = $CI->input->post($field, FALSE)) === FALSE) {
-			return ($default === TRUE) ? ' selected="selected"' : '';
-		}
+        if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
+            return $CI->form_validation->set_select($field, $value, $default);
+        } else if (($input = $CI->input->post($field, FALSE)) === NULL) {
+            return ($default === TRUE) ? ' selected="selected"' : '';
+        }
 
-		$value = (string) $value;
-		if (is_array($input)) {
-			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($input as &$v) {
-				if ($value === $v) {
-					return ' selected="selected"';
-				}
-			}
+        $value = (string) $value;
+        if (is_array($input)) {
+            // Note: in_array('', array(0)) returns TRUE, do not use it
+            foreach ($input as &$v) {
+                if ($value === $v) {
+                    return ' selected="selected"';
+                }
+            }
 
-			return '';
-		}
+            return '';
+        }
 
-		return ($input === $value) ? ' selected="selected"' : '';
-	}
+        return ($input === $value) ? ' selected="selected"' : '';
+    }
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('set_checkbox'))
 {
-	/**
-	 * Set Checkbox
-	 *
-	 * Let's you set the selected value of a checkbox via the value in the POST array.
-	 * If Form Validation is active it retrieves the info from the validation class
-	 *
-	 * @param	string
-	 * @param	string
-	 * @param	bool
-	 * @return	string
-	 */
-	function set_checkbox($field, $value = '', $default = FALSE)
-	{
-		$CI =& get_instance();
+    /**
+     * Set Checkbox
+     *
+     * Let's you set the selected value of a checkbox via the value in the POST array.
+     * If Form Validation is active it retrieves the info from the validation class
+     *
+     * @param	string
+     * @param	string
+     * @param	bool
+     * @return	string
+     */
+    function set_checkbox($field, $value = '', $default = FALSE)
+    {
+        $CI =& get_instance();
 
-		if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
-			return $CI->form_validation->set_checkbox($field, $value, $default);
-		} else if (($input = $CI->input->post($field, FALSE)) === FALSE) {
-			return ($default === TRUE) ? ' checked="checked"' : '';
-		}
+        if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
+            return $CI->form_validation->set_checkbox($field, $value, $default);
+        } else if (($input = $CI->input->post($field, FALSE)) === NULL) {
+            return ($default === TRUE) ? ' checked="checked"' : '';
+        }
 
-		$value = (string) $value;
-		if (is_array($input)) {
-			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($input as &$v) {
-				if ($value === $v) {
-					return ' checked="checked"';
-				}
-			}
+        $value = (string) $value;
+        if (is_array($input)) {
+            // Note: in_array('', array(0)) returns TRUE, do not use it
+            foreach ($input as &$v) {
+                if ($value === $v) {
+                    return ' checked="checked"';
+                }
+            }
 
-			return '';
-		}
+            return '';
+        }
 
-		return ($input === $value) ? ' checked="checked"' : '';
-	}
+        return ($input === $value) ? ' checked="checked"' : '';
+    }
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('set_radio'))
 {
-	/**
-	 * Set Radio
-	 *
-	 * Let's you set the selected value of a radio field via info in the POST array.
-	 * If Form Validation is active it retrieves the info from the validation class
-	 *
-	 * @param	string	$field
-	 * @param	string	$value
-	 * @param	bool	$default
-	 * @return	string
-	 */
-	function set_radio($field, $value = '', $default = FALSE)
-	{
-		$CI =& get_instance();
+    /**
+     * Set Radio
+     *
+     * Let's you set the selected value of a radio field via info in the POST array.
+     * If Form Validation is active it retrieves the info from the validation class
+     *
+     * @param	string	$field
+     * @param	string	$value
+     * @param	bool	$default
+     * @return	string
+     */
+    function set_radio($field, $value = '', $default = FALSE)
+    {
+        $CI =& get_instance();
 
-		if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
-			return $CI->form_validation->set_radio($field, $value, $default);
-		} else if (($input = $CI->input->post($field, FALSE)) === FALSE) {
-			return ($default === TRUE) ? ' checked="checked"' : '';
-		}
+        if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
+            return $CI->form_validation->set_radio($field, $value, $default);
+        } else if (($input = $CI->input->post($field, FALSE)) === NULL) {
+            return ($default === TRUE) ? ' checked="checked"' : '';
+        }
 
-		return ($input === (string) $value) ? ' checked="checked"' : '';
-	}
+        return ($input === (string) $value) ? ' checked="checked"' : '';
+    }
 }

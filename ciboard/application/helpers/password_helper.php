@@ -9,34 +9,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author CIBoard (develop@ciboard.co.kr)
  */
 
-if ( ! function_exists('password_hash'))
-{
-	function password_hash($password='', $key='1') {
-		
-		if( ! $password) return FALSE;
+if ( ! function_exists('password_hash')) {
+    function password_hash($password = '', $key = '1')
+    {
+        if (empty($password)) {
+            return false;
+        }
 
-		include_once(APPPATH.'libraries/PasswordHash.php');
+        include_once(APPPATH . 'libraries/PasswordHash.php');
 
-		$hasher = new PasswordHash();
-		$hash = $hasher->HashPassword($password);
+        $hasher = new PasswordHash();
+        $hash = $hasher->HashPassword($password);
 
-		return $hash;
-
-	}
-
+        return $hash;
+    }
 }
 
-if ( ! function_exists('password_verify'))
-{
-	function password_verify($password='', $hash='') {
-		
-		if( ! $password) return FALSE;
-		if( ! $hash) return FALSE;
 
-		include_once(APPPATH.'libraries/PasswordHash.php');
+if ( ! function_exists('password_verify')) {
+    function password_verify($password = '', $hash = '')
+    {
+        if (empty($password)) {
+            return false;
+        }
+        if (empty($hash)) {
+            return false;
+        }
 
-		$hasher = new PasswordHash();
+        include_once(APPPATH . 'libraries/PasswordHash.php');
 
-		return $hasher->CheckPassword($password, $hash);
-	}
+        $hasher = new PasswordHash();
+
+        return $hasher->CheckPassword($password, $hash);
+    }
 }

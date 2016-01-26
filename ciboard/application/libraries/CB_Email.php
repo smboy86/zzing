@@ -42,34 +42,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * Permits email to be sent using Mail, Sendmail, or SMTP.
  *
- * @package		CodeIgniter
+ * @package        CodeIgniter
  * @subpackage	Libraries
  * @category	Libraries
- * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/email.html
+ * @author        EllisLab Dev Team
+ * @link        http://codeigniter.com/user_guide/libraries/email.html
  */
 
- class CB_Email  extends CI_Email {
+class CB_Email extends CI_Email
+{
 
-	var $CI;
+    var $CI;
 
-	/**
-	 * Constructor - Sets Email Preferences
-	 *
-	 * The constructor can be passed an array of config values
-	 */
-	function __construct()
-	{
-		parent::__construct();
-		$this->CI =& get_instance();
+    /**
+     * Constructor - Sets Email Preferences
+     *
+     * The constructor can be passed an array of config values
+     */
+    function __construct()
+    {
+        parent::__construct();
+        $this->CI =& get_instance();
 
-		$this->protocol		= $this->CI->config->item('email_protocal') ? $this->CI->config->item('email_protocal') : 'mail';	// mail/sendmail/smtp
-		$this->smtp_host		= $this->CI->config->item('email_smtp_host');		// SMTP Server.  Example: mail.earthlink.net
-		$this->smtp_user		= $this->CI->config->item('email_smtp_user');		// SMTP Username
-		$this->smtp_pass		= $this->CI->config->item('email_smtp_pass');		// SMTP Password
-		$this->smtp_port		= $this->CI->config->item('email_smtp_port');		// SMTP Port
-		$this->smtp_crypto	= $this->CI->config->item('email_smtp_crypto');		// SMTP Encryption. Can be null, tls or ssl.
-		$this->mailtype	= 'html';
-	}
-
+        $this->protocol = $this->CI->config->item('email_protocal') ? $this->CI->config->item('email_protocal') : 'mail'; // mail/sendmail/smtp
+        $this->smtp_host = $this->CI->config->item('email_smtp_host'); // SMTP Server. Example: mail.earthlink.net
+        $this->smtp_user = $this->CI->config->item('email_smtp_user'); // SMTP Username
+        $this->smtp_pass = $this->CI->config->item('email_smtp_pass'); // SMTP Password
+        $this->smtp_port = $this->CI->config->item('email_smtp_port'); // SMTP Port
+        $this->smtp_crypto = $this->CI->config->item('email_smtp_crypto'); // SMTP Encryption. Can be null, tls or ssl.
+        $this->mailtype = 'html';
+    }
 }

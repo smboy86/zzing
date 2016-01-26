@@ -38,7 +38,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class CB_Security extends CI_Security {
+class CB_Security extends CI_Security
+{
 
 	public function csrf_verify()
 	{

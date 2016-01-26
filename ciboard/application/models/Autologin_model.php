@@ -9,21 +9,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author CIBoard (develop@ciboard.co.kr)
  */
 
-class Autologin_model extends CB_Model {
+class Autologin_model extends CB_Model
+{
 
-	/**
-	*  테이블명
-	*/
-	public $_table = 'autologin';
+    /**
+     * 테이블명
+     */
+    public $_table = 'autologin';
 
-	/**
-	*  사용되는 테이블의 프라이머리키
-	*/
-	public $primary_key = 'aul_id';  // 사용되는 테이블의 프라이머리키
+    /**
+     * 사용되는 테이블의 프라이머리키
+     */
+    public $primary_key = 'aul_id'; // 사용되는 테이블의 프라이머리키
 
-	function __construct()
-	{
-		parent::__construct();
-	}
-
+    function __construct()
+    {
+        parent::__construct();
+    }
 }

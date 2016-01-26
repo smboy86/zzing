@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	http://codeigniter.com
+ * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -54,11 +54,10 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 
-
-/*
- *	CiBoard 주 : 설치시에는 값을 production 으로 유지해주세요. 
- *	그래야 install 페이지로 정상적으로 이동됩니다.
- *	설치 이후에는 이 값을 변경하셔도 상관없습니다.
+/**
+ * CiBoard 주 : 설치시에는 값을 production 으로 유지해주세요.
+ * 그래야 install 페이지로 정상적으로 이동됩니다.
+ * 설치 이후에는 이 값을 변경하셔도 상관없습니다.
 */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 
@@ -106,10 +105,10 @@ switch (ENVIRONMENT)
  * as this file.
  */
 
-/*
+/**
  *	CiBoard 주 : 디렉토리명을 system 에서 _system 으로 변경하였습니다.
  *	원하시면 다른 값으로 변경하셔도 좋습니다.
- * 변경하시는 경우, 실제 서버에 존재하는 _system 디렉토리명도 같이 변경해주세요	
+ * 변경하시는 경우, 실제 서버에 존재하는 _system 디렉토리명도 같이 변경해주세요
 */
 	$system_path = '_system';
 
@@ -122,15 +121,15 @@ switch (ENVIRONMENT)
  * folder than the default one you can set its name here. The folder
  * can also be renamed or relocated anywhere on your server. If
  * you do, use a full server path. For more info please see the user guide:
- * http://codeigniter.com/user_guide/general/managing_apps.html
+ * https://codeigniter.com/user_guide/general/managing_apps.html
  *
  * NO TRAILING SLASH!
  */
 
-/*
+/**
  *	CiBoard 주 : application 디렉토리명입니다.
  *	원하시면 다른 값으로 변경하셔도 좋습니다.
- * 변경하시는 경우, 실제 서버에 존재하는 application 디렉토리명도 같이 변경해주세요	
+ * 변경하시는 경우, 실제 서버에 존재하는 application 디렉토리명도 같이 변경해주세요
 */
 $application_folder = 'application';
 
@@ -148,12 +147,12 @@ $application_folder = 'application';
  * NO TRAILING SLASH!
  */
 
-/*
+/**
  *	CiBoard 주 : view 디렉토리명입니다.
  *	씨아이보드의 경우 view 디렉토리가 application 안에 있는 것이 아니라
  *	root 디렉토리에 존재합니다.
  *	원하시면 다른 값으로 변경하셔도 좋습니다
- * 변경하시는 경우, 실제 서버에 존재하는 views 디렉토리명도 같이 변경해주세요	
+ * 변경하시는 경우, 실제 서버에 존재하는 views 디렉토리명도 같이 변경해주세요
 */
 $view_folder = 'views';
 

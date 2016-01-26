@@ -40,11 +40,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Form Validation Class
  *
- * @package		CodeIgniter
+ * @package        CodeIgniter
  * @subpackage	Libraries
  * @category	Validation
- * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/form_validation.html
+ * @author        EllisLab Dev Team
+ * @link        http://codeigniter.com/user_guide/libraries/form_validation.html
  */
 /*
 CI_Form_validation 에서 is_unique 변형
@@ -53,82 +53,83 @@ db 업데이트시 자기 자신의 값과는 비교하지 않음
 본인의 이메일을 수정 가능하다고 할 때, 기존 자기 이메일의 값과는 비교하지 않음
 */
 
-class CB_Form_validation extends CI_Form_validation {
+class CB_Form_validation extends CI_Form_validation
+{
 
-	protected $CI;
-	protected $_field_data			= array();
-	protected $_config_rules		= array();
-	protected $_error_array			= array();
-	protected $_error_messages		= array();
-	protected $_error_prefix		= '<p>';
-	protected $_error_suffix		= '</p>';
-	protected $error_string			= '';
-	protected $_safe_form_data		= FALSE;
+    protected $CI;
+    protected $_field_data = array();
+    protected $_config_rules = array();
+    protected $_error_array = array();
+    protected $_error_messages = array();
+    protected $_error_prefix = '<p>';
+    protected $_error_suffix = '</p>';
+    protected $error_string = '';
+    protected $_safe_form_data = false;
 
-	/**
-	 * Constructor
+    /**
+     * Constructor
+     */
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Match one field to another
+     *
+     * @access public
+     * @param string
+     * @param field
+     * @return bool
+     */
+    public function is_unique($str, $field)
+    {
+        if (substr_count($field, '.') === 3) {
+            list($table, $field, $id_field, $id_val) = explode('.', $field);
+            $query = $this->CI->db->limit(1)->where($field, $str)->where($id_field . ' != ', $id_val)->get($table);
+        } else {
+            list($table, $field) = explode('.', $field);
+            $query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
+        }
+        return $query->num_rows() === 0;
+    }
+    // --------------------------------------------------------------------
+
+    /**
+     * Alpha-numeric with underscores and dashes
+     *
+     * @access public
+     * @param string
+     * @return bool
 	 */
-	function __construct()
-	{
-		parent::__construct();
-	}
+    public function alphanumunder($str)
+    {
+        return ( ! preg_match("/^([-a-z0-9_])+$/i", $str)) ? false : true;
+    }
 
-	// --------------------------------------------------------------------
+    public function valid_url($str)
+    {
+        $pattern = "|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i";
+        if ( ! preg_match($pattern, $str)) {
+            return false;
+        }
 
-	/**
-	 * Match one field to another
-	 *
-	 * @access	public
-	 * @param	string
-	 * @param	field
-	 * @return	bool
-	 */
-	public function is_unique($str, $field)
-	{
-		if (substr_count($field, '.') ==3) {
-			list($table, $field, $id_field, $id_val) = explode('.', $field);
-			$query = $this->CI->db->limit(1)->where($field, $str)->where($id_field.' != ', $id_val)->get($table);
-		} else {
-			list($table, $field)=explode('.', $field);
-			$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
-		}
-		return $query->num_rows() === 0;
-	}
-	// --------------------------------------------------------------------
+        return true;
+    }
 
-	/**
-	 * Alpha-numeric with underscores and dashes
-	 *
-	 * @access	public
-	 * @param	string
-	 * @return	bool
-	 */
-	public function alphanumunder($str)
-	{
-		return ( ! preg_match("/^([-a-z0-9_])+$/i", $str)) ? FALSE : TRUE;
-	}
-
-	function valid_url($str)
-	{
-		$pattern = "|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i";
-		if ( ! preg_match($pattern, $str)) {
-			return FALSE;
-		}
-
-		return TRUE;
-	}
-
-	public function valid_phone($value)
-	{
-		$value = trim($value);
-		if ($value == '') {
-			return TRUE;
-		} else {
-			if (preg_match('/^\(?[0-9]{2,3}\)?[-. ]?[0-9]{3,4}[-. ]?[0-9]{4}$/', $value)) {
-				return preg_replace('/^\(?([0-9]{2,3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{4})$/', '$1-$2-$3', $value);
-			} else {
-				return FALSE;
-			}
-		}
-	}
+    public function valid_phone($value)
+    {
+        $value = trim($value);
+        if ($value === '') {
+            return true;
+        } else {
+            if (preg_match('/^\(?[0-9]{2,3}\)?[-. ]?[0-9]{3,4}[-. ]?[0-9]{4}$/', $value)) {
+                return preg_replace('/^\(?([0-9]{2,3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{4})$/', '$1-$2-$3', $value);
+            } else {
+                return false;
+            }
+        }
+    }
 }

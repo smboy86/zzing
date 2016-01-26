@@ -51,29 +51,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('element'))
 {
-	/**
-	 * Element
-	 *
-	 * Lets you determine whether an array index is set and whether it has a value.
-	 * If the element is empty it returns NULL (or whatever you specify as the default value.)
-	 *
-	 * @param	string
-	 * @param	array
-	 * @param	mixed
-	 * @return	mixed	depends on what the array contains
-	 */
-	function element($item, $array, $default = FALSE)
-	{
-		return is_array($array) && array_key_exists($item, $array) ? $array[$item] : $default;
-	}
+    /**
+     * Element
+     *
+     * Lets you determine whether an array index is set and whether it has a value.
+     * If the element is empty it returns NULL (or whatever you specify as the default value.)
+     *
+     * @param	string
+     * @param	array
+     * @param	mixed
+     * @return	mixed	depends on what the array contains
+     */
+    function element($item, $array, $default = NULL)
+    {
+        return is_array($array) && array_key_exists($item, $array) ? $array[$item] : $default;
+    }
 }
 
 
 if ( ! function_exists('array_overlap')) {
     function array_overlap($arr, $val) {
-        for ($i=0, $m=count($arr); $i<$m; $i++) {
-            if ($arr[$i] == $val)
+        for ($i = 0, $m = count($arr); $i<$m; $i++) {
+            if ($arr[$i] === $val) {
                 return true;
+            }
         }
         return false;
     }

@@ -9,140 +9,181 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author CIBoard (develop@ciboard.co.kr)
  */
 
-class Post_meta_model extends CB_Model {
+class Post_meta_model extends CB_Model
+{
 
-	/**
-	*  테이블명
-	*/
-	public $_table = 'post_meta';
+    /**
+     * 테이블명
+     */
+    public $_table = 'post_meta';
 
-	/**
-	*  사용되는 테이블의 프라이머리키
-	*/
-	public $parent_key = 'post_id';
+    /**
+     * 사용되는 테이블의 프라이머리키
+     */
+    public $parent_key = 'post_id';
 
-	public $meta_key = 'pmt_key';
+    public $meta_key = 'pmt_key';
 
-	public $meta_value = 'pmt_value';
+    public $meta_value = 'pmt_value';
 
-	function __construct()
-	{
-		parent::__construct();
-	}
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-	function get_all_meta($parent_value='')
-	{
-		if ( ! $parent_value) return FALSE;
 
-		$result = array();
-		$res = $this->get($primary_value='' , $select = '', array($this->parent_key => $parent_value));
-		if ($res && is_array($res)) {
-			foreach ($res as $val) {
-				$result[$val[$this->meta_key]] = $val[$this->meta_value];
-			}
-		}
+    public function get_all_meta($post_id = 0)
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
 
-		return $result;
+        $result = array();
+        $res = $this->get($primary_value = '', $select = '', array($this->parent_key => $post_id));
+        if ($res && is_array($res)) {
+            foreach ($res as $val) {
+                $result[$val[$this->meta_key]] = $val[$this->meta_value];
+            }
+        }
 
-	}
+        return $result;
+    }
 
-	function save($parentkey='', $brd_id ='', $savedata='')
-	{
-		if ( ! $parentkey) return FALSE;
 
-		if ($savedata && is_array($savedata)) {
-			foreach ($savedata as $column => $value) {
-					$this->meta_update($parentkey, $brd_id, $column, $value);
-			}
-		}
-	}
+    public function save($post_id = 0, $brd_id = 0, $savedata = '')
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
 
-	function deletemeta($parentkey='')
-	{
-		if ( ! $parentkey) return FALSE;
+        if ($savedata && is_array($savedata)) {
+            foreach ($savedata as $column => $value) {
+                $this->meta_update($post_id, $brd_id, $column, $value);
+            }
+        }
+    }
 
-		$this->delete('', array($this->parent_key => $parentkey));
-	}
 
-	function meta_update($parentkey='', $brd_id='', $column='', $value=FALSE)
-	{
-		if ( ! $parentkey) return FALSE;
+    public function deletemeta($post_id = 0)
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
+        $this->delete_where(array($this->parent_key => $post_id));
+    }
 
-		$column = trim($column);
-		if ( ! $column) return FALSE;
 
-		$old_value = $this->item($parentkey, $column);
-		if (empty($value)) {
-			$value = '';
-		}
-		if ($value === $old_value) {
-			return FALSE;
-		}
+    public function meta_update($post_id = 0, $brd_id = 0, $column = '', $value = false)
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
+        $brd_id = (int) $brd_id;
+        if (empty($brd_id) OR $brd_id < 1) {
+            return false;
+        }
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
 
-		if (FALSE === $old_value) {
-			return $this->add_meta($parentkey, $brd_id, $column, $value);
-		}
+        $old_value = $this->item($post_id, $column);
+        if (empty($value)) {
+            $value = '';
+        }
+        if ($value === $old_value) {
+            return false;
+        }
 
-		return $this->update_meta($parentkey, $column, $value);
+        if (false === $old_value) {
+            return $this->add_meta($post_id, $brd_id, $column, $value);
+        }
 
-	}
+        return $this->update_meta($post_id, $column, $value);
+    }
 
-	function item($parentkey='', $column='')
-	{
-		if ( ! $parentkey) return FALSE;
-		if ( ! $column) return FALSE;
 
-		$result = $this->get_all_meta($parentkey);
+    public function item($post_id = 0, $column = '')
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
+        if (empty($column)) {
+            return false;
+        }
 
-		return isset($result[ $column ]) ? $result[ $column ] :  FALSE;
-	}
+        $result = $this->get_all_meta($post_id);
 
-	function add_meta($parentkey='', $brd_id='', $column='', $value='')
-	{
-		if ( ! $parentkey) return FALSE;
+        return isset($result[ $column ]) ? $result[ $column ] : false;
+    }
 
-		$column = trim($column);
-		if ( ! $column) return FALSE;
 
-		$updatedata = array(
-			'post_id' => $parentkey,
-			'brd_id' => $brd_id,
-			'pmt_key' => $column,
-			'pmt_value' => $value,
-		);
-		$this->db->replace($this->_table, $updatedata);
+    public function add_meta($post_id = 0, $brd_id = 0, $column = '', $value = '')
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
+        $brd_id = (int) $brd_id;
+        if (empty($brd_id) OR $brd_id < 1) {
+            return false;
+        }
 
-		return TRUE;
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
 
-	}
+        $updatedata = array(
+            'post_id' => $post_id,
+            'brd_id' => $brd_id,
+            'pmt_key' => $column,
+            'pmt_value' => $value,
+        );
+        $this->db->replace($this->_table, $updatedata);
 
-	function update_meta($parentkey='', $column='', $value='')
-	{
-		if ( ! $parentkey) return FALSE;
+        return true;
+    }
 
-		$column = trim($column);
-		if ( ! $column) return FALSE;
 
-		$this->db->where($this->parent_key, $parentkey);
-		$this->db->where($this->meta_key, $column);
-		$data = array($this->meta_value => $value);
-		$this->db->update($this->_table, $data);
+    public function update_meta($post_id = 0, $column = '', $value = '')
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
 
-		return TRUE;
+        $this->db->where($this->parent_key, $post_id);
+        $this->db->where($this->meta_key, $column);
+        $data = array($this->meta_value => $value);
+        $this->db->update($this->_table, $data);
 
-	}
+        return true;
+    }
 
-	function delete_meta_column($parentkey='', $column='')
-	{
-		if ( ! $parentkey) return FALSE;
 
-		$column = trim($column);
-		if ( ! $column) return FALSE;
+    public function delete_meta_column($post_id = 0, $column = '')
+    {
+        $post_id = (int) $post_id;
+        if (empty($post_id) OR $post_id < 1) {
+            return false;
+        }
+        $column = trim($column);
+        if (empty($column)) {
+            return false;
+        }
 
-		$this->delete('', array($this->parent_key, $parentkey, $this->meta_key=>$column));
+        $this->delete_where(array($this->parent_key, $post_id, $this->meta_key => $column));
 
-		return TRUE;
-
-	}
-
+        return true;
+    }
 }
