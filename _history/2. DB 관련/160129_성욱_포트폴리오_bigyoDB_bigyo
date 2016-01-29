@@ -1,0 +1,1582 @@
+-- --------------------------------------------------------
+-- 호스트:                          nas.bero.kr
+-- 서버 버전:                        5.0.70-log - Gentoo Linux mysql-5.0.70-r1
+-- 서버 OS:                        softfloat-linux-gnueabi
+-- HeidiSQL 버전:                  9.3.0.4984
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- bigyo 데이터베이스 구조 내보내기
+CREATE DATABASE IF NOT EXISTS `bigyo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `bigyo`;
+
+
+-- 테이블 bigyo.Board_Forum 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Board_Forum` (
+  `Post_ID` int(11) NOT NULL auto_increment COMMENT '글번호',
+  `Part_ID` int(11) NOT NULL default '0' COMMENT '게시판 파트',
+  `Notice` int(1) NOT NULL default '0' COMMENT '공지사항',
+  `Group_ID` int(11) NOT NULL default '0' COMMENT '글그룹',
+  `Member_Num` int(11) default NULL COMMENT '회원번호',
+  `Member_Name` varchar(30) default NULL COMMENT '별명',
+  `Subject` varchar(50) default NULL COMMENT '제목',
+  `Content` text NOT NULL COMMENT '내용',
+  `Category` varchar(20) default NULL COMMENT '카테고리',
+  `Count` int(11) NOT NULL default '0' COMMENT '카운터',
+  `IP` varchar(50) default NULL COMMENT 'IP',
+  `Reply_Group` int(11) NOT NULL default '0' COMMENT '답글 그룹',
+  `Reply_Seq` int(11) NOT NULL default '0' COMMENT '답글 순서',
+  `Reply_Level` int(11) NOT NULL default '0' COMMENT '답글 레벨',
+  `Comment_Seq` int(11) NOT NULL default '0' COMMENT '댓글 순서',
+  `Comm_Reply_Seq` int(11) NOT NULL default '0' COMMENT '대댓글 순서',
+  `Comment_Count` int(11) NOT NULL default '0' COMMENT '댓글 갯수',
+  `Likes` int(11) NOT NULL default '0' COMMENT '좋아요 카운트',
+  `Dislike` int(11) NOT NULL default '0' COMMENT '싫어요 카운트',
+  `Like_List` text COMMENT '좋아요/싫어요 누른 사람들',
+  `Attachment` int(2) NOT NULL default '0' COMMENT '첨부파일',
+  `Modify_Count` int(2) NOT NULL default '0' COMMENT '수정횟수',
+  `Post_Date` datetime NOT NULL COMMENT '작성일자',
+  `Delete_Date` datetime default NULL COMMENT '삭제일자',
+  `Read_Date` datetime default NULL COMMENT '마지막 읽은 시간',
+  `Method` varchar(50) default NULL,
+  `Contact` varchar(50) default NULL,
+  `Price` varchar(50) default NULL,
+  `Selected` varchar(50) default NULL,
+  PRIMARY KEY  (`Post_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='댓글번호 0은 본문\r\n첫댓글은 1, 두번째 댓글은 2...\r\n1의 대댓글은 1 + 대댓코드 A';
+
+-- 테이블 데이터 bigyo.Board_Forum:62 rows 내보내기
+/*!40000 ALTER TABLE `Board_Forum` DISABLE KEYS */;
+INSERT INTO `Board_Forum` (`Post_ID`, `Part_ID`, `Notice`, `Group_ID`, `Member_Num`, `Member_Name`, `Subject`, `Content`, `Category`, `Count`, `IP`, `Reply_Group`, `Reply_Seq`, `Reply_Level`, `Comment_Seq`, `Comm_Reply_Seq`, `Comment_Count`, `Likes`, `Dislike`, `Like_List`, `Attachment`, `Modify_Count`, `Post_Date`, `Delete_Date`, `Read_Date`, `Method`, `Contact`, `Price`, `Selected`) VALUES
+	(47, 31, 0, 3, 1, '안되겠소 쏩시다', '아마겟돈', '<p>둘중에 뭐가 더 재미있나?</p>\r\n', NULL, 1, '127.0.0.1', 3, 0, 0, 0, 0, 1, 13, 7, NULL, 2, 0, '2015-08-04 14:01:46', NULL, '2015-08-04 14:02:03', NULL, NULL, NULL, '다찌마와 리'),
+	(48, 33, 0, 4, 13, 'zzz', '가족끼리 같이 즐겨 볼수있는 코미디 애니메이션 미니언즈', '<p>비켜, 이 구역의 주인공은 나야!<br />\r\n최고의 악당을 찾아 떠나는 &lsquo;슈퍼배드 원정대&rsquo;의 모험이 시작된다!</p>\r\n\r\n<p>인류가 탄생하기 훨씬 오래 전, 태초에 미니언이 있었다. 당대 최고의 슈퍼 악당만을 보스로 섬겨온 미니언들!&nbsp;<br />\r\n&nbsp;&nbsp;<br />\r\n&nbsp;하지만 의도치 않은 치명적(?) 실수로 인해 보스들과 이별하게 되고, 우울증에 빠진 미니언들을 구하기 위해 용감한 리더 &lsquo;케빈&rsquo;은 자유로운 영혼 &lsquo;스튜어트&rsquo;와 무한 긍정 &lsquo;밥&rsquo;과 함께 &lsquo;슈퍼배드 원정대&rsquo;를 결성한다.&nbsp;<br />\r\n&nbsp;&nbsp;<br />\r\n&nbsp;세계 악당 챔피언십에 참석해 최초의 여성 슈퍼 악당 &lsquo;스칼렛&rsquo;(산드라 블록)을 보고 첫눈에 홀~딱 반한 이들은 일생일대의 위기가 다가오는지도 모른 채 스칼렛의 특급 미션을 넙죽 받게 되는데&hellip;</p>\r\n', '잡담', 0, '127.0.0.1', 4, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:01:47', '2015-08-04 14:02:00', '2015-08-04 14:01:58', NULL, NULL, NULL, NULL),
+	(45, 31, 0, 1, 1, '안되겠소 쏩시다', '클레멘타인', '<p>들중에?</p>\r\n', NULL, 0, '127.0.0.1', 1, 0, 0, 0, 0, 0, 19, 1, NULL, 2, 0, '2015-08-04 14:01:10', NULL, '2015-08-04 14:01:10', NULL, NULL, NULL, '더 록'),
+	(46, 33, 0, 2, 13, 'zzz', '가족끼리 같이 즐겨 볼수있는 코미디 애니메이션 미니언즈', '<p>비켜, 이 구역의 주인공은 나야!<br />\r\n최고의 악당을 찾아 떠나는 &lsquo;슈퍼배드 원정대&rsquo;의 모험이 시작된다!</p>\r\n\r\n<p>인류가 탄생하기 훨씬 오래 전, 태초에 미니언이 있었다. 당대 최고의 슈퍼 악당만을 보스로 섬겨온 미니언들!&nbsp;<br />\r\n&nbsp;&nbsp;<br />\r\n&nbsp;하지만 의도치 않은 치명적(?) 실수로 인해 보스들과 이별하게 되고, 우울증에 빠진 미니언들을 구하기 위해 용감한 리더 &lsquo;케빈&rsquo;은 자유로운 영혼 &lsquo;스튜어트&rsquo;와 무한 긍정 &lsquo;밥&rsquo;과 함께 &lsquo;슈퍼배드 원정대&rsquo;를 결성한다.&nbsp;<br />\r\n&nbsp;&nbsp;<br />\r\n&nbsp;세계 악당 챔피언십에 참석해 최초의 여성 슈퍼 악당 &lsquo;스칼렛&rsquo;(산드라 블록)을 보고 첫눈에 홀~딱 반한 이들은 일생일대의 위기가 다가오는지도 모른 채 스칼렛의 특급 미션을 넙죽 받게 되는데&hellip;</p>\r\n', '잡담', 0, '127.0.0.1', 2, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:01:37', NULL, '2015-08-04 14:01:37', NULL, NULL, NULL, NULL),
+	(65, 31, 0, 15, 13, 'zzz', NULL, '올여름엔 스릴러아니겠습니까\r\n', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:08:39', NULL, NULL, NULL, NULL, NULL, NULL),
+	(66, 21, 0, 18, 10, '누텔라', '편의점', '<p>배고파</p>\r\n', NULL, 0, '127.0.0.1', 18, 0, 0, 0, 0, 0, 0, 1, NULL, 2, 0, '2015-08-04 14:09:06', NULL, '2015-08-04 14:09:06', NULL, NULL, NULL, '김삿갓'),
+	(67, 33, 0, 19, 13, 'zzz', '시리즈물의 역시 반지의제왕!!', '<p>시리즈물은 역시 반지의 제왕이지</p>\r\n', '잡담', 3, '127.0.0.1', 19, 0, 0, 0, 0, 0, 1, 0, NULL, 1, 0, '2015-08-04 14:10:01', NULL, '2015-08-04 14:11:48', NULL, NULL, NULL, NULL),
+	(68, 33, 0, 20, 1, '안되겠소 쏩시다', '베테랑', '<p>한 번 꽂힌 것은 무조건 끝을 보는 행동파 &lsquo;서도철&rsquo;(황정민),<br />\r\n&nbsp;20년 경력의 승부사 &lsquo;오팀장&rsquo;(오달수), 위장 전문 홍일점 &lsquo;미스봉&rsquo;(장윤주), 육체파 &lsquo;왕형사&rsquo;(오대환), 막내 &lsquo;윤형사&rsquo;(김시후)까지&nbsp;<br />\r\n&nbsp;겁 없고, 못 잡는 것 없고, 봐 주는 것 없는 특수 강력사건 담당 광역수사대.<br />\r\n&nbsp;<br />\r\n&nbsp;오랫동안 쫓던 대형 범죄를 해결한 후 숨을 돌리려는 찰나,&nbsp;<br />\r\n&nbsp;서도철은 재벌 3세 &lsquo;조태오&rsquo;(유아인)를 만나게 된다.&nbsp;<br />\r\n&nbsp;세상 무서울 것 없는 안하무인의 조태오와 언제나 그의 곁을 지키는 오른팔 &lsquo;최상무&rsquo;(유해진).&nbsp;<br />\r\n&nbsp;서도철은 의문의 사건을 쫓던 중 그들이 사건의 배후에 있음을 직감한다.&nbsp;<br />\r\n&nbsp;<br />\r\n&nbsp;건들면 다친다는 충고에도 불구하고 포기하지 않는 서도철의 집념에<br />\r\n&nbsp;판은 걷잡을 수 없이 커져가고&nbsp;<br />\r\n&nbsp;조태오는 이를 비웃기라도 하듯 유유히 포위망을 빠져 나가는데&hellip;&nbsp;<br />\r\n&nbsp;<br />\r\n&nbsp;베테랑 광역수사대 VS 유아독존 재벌 3세<br />\r\n&nbsp;2015년 여름, 자존심을 건 한판 대결이 시작된다!</p>\r\n', '잡담', 1, '127.0.0.1', 20, 0, 0, 0, 0, 2, 1, 0, NULL, 1, 0, '2015-08-04 14:10:11', NULL, '2015-08-06 04:06:37', NULL, NULL, NULL, NULL),
+	(49, 33, 0, 5, 13, 'zzz', '올 여름 더위를 날리버릴 액션 영화 \'암살\'', '<p>1933년 조국이 사라진 시대<br />\r\n&nbsp;대한민국 임시정부는 일본 측에 노출되지 않은 세 명을 암살작전에 지목한다.<br />\r\n&nbsp;한국 독립군 저격수 안옥윤, 신흥무관학교 출신 속사포, 폭탄 전문가 황덕삼!<br />\r\n&nbsp;김구의 두터운 신임을 받는 임시정부 경무국 대장 염석진은 이들을 찾아 나서기 시작한다.<br />\r\n&nbsp;암살단의 타깃은 조선주둔군 사령관 카와구치 마모루와 친일파 강인국.<br />\r\n&nbsp;한편, 누군가에게 거액의 의뢰를 받은 청부살인업자 하와이 피스톨이 암살단의 뒤를 쫓는데...<br />\r\n&nbsp;친일파 암살작전을 둘러싼 이들의 예측할 수 없는 운명이 펼쳐진다!</p>\r\n', '잡담', 0, '127.0.0.1', 5, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:03:00', NULL, '2015-08-04 14:03:13', NULL, NULL, NULL, NULL),
+	(50, 31, 0, 6, 1, '안되겠소 쏩시다', '극장판', '<p>최고의 다찌마와리는?</p>\r\n', NULL, 1, '127.0.0.1', 6, 0, 0, 0, 0, 0, 6, 14, NULL, 2, 0, '2015-08-04 14:03:11', NULL, '2015-08-04 14:07:20', NULL, NULL, NULL, '인터넷판'),
+	(51, 11, 0, 7, 10, '누텔라', '스텔라', '<p>난스텔라</p>\r\n', NULL, 1, '127.0.0.1', 7, 0, 0, 0, 0, 0, 1, 1, NULL, 2, 0, '2015-08-04 14:03:22', NULL, '2015-08-04 14:03:22', NULL, NULL, NULL, '원빈'),
+	(52, 33, 0, 8, 13, 'zzz', '불가능이란 없다 미션 임파서블: 로그네이션 ', '<p>시리즈 사상 최악의 위기!<br />\r\n역대 가장 불가능한 미션이 시작된다!</p>\r\n\r\n<p>미국정부로부터 해체 통보를 받게 된 최첨단 첩보기관 IMF(Impossible Mission Force). &lsquo;에단 헌트(톰 크루즈)&rsquo;를 포함한 팀원들은 모두 뿔뿔이 흩어지게 되고, 정체불명의 테러조직 &lsquo;신디케이트&rsquo;는 IMF 전멸 작전을 펼친다. 신디케이트에게 납치 당한 &lsquo;에단 헌트&rsquo;는 의문의 여인 &lsquo;일사(레베카 퍼거슨)&rsquo;의 도움을 받아 극적 탈출에 성공하고 다시 팀원들을 불러 모은다. 리더 &lsquo;에단 헌트&rsquo;부터 전략 분석요원 &lsquo;브랜트(제레미 레너)&rsquo;, IT 전문요원 &lsquo;벤지(사이먼 페그)&rsquo;, 해킹 전문요원 &lsquo;루터(빙 라메스)&rsquo; 그리고 정체를 알 수 없는 &lsquo;일사&rsquo;까지. 다시 모인 그들은 역대 가장 위협적인 적 신디케이트에 맞서는 불가능한 미션을 펼친다!</p>\r\n', '잡담', 1, '127.0.0.1', 8, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:03:49', NULL, '2015-08-04 14:03:49', NULL, NULL, NULL, NULL),
+	(53, 33, 0, 6, 1, '안되겠소 쏩시다', 'RE :  이거 재미있음', '<p>ㅋㅋㅋㅋ</p>\r\n', '잡담', 0, '127.0.0.1', 5, 1, 1, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:04:08', NULL, '2015-08-04 14:05:05', NULL, NULL, NULL, NULL),
+	(55, 33, 0, 9, 13, 'zzz', '대한민국을 지키자! 연평해전', '<p>월드컵의 열기로 뜨거웠던 2002년 6월</p>\r\n\r\n<p>해군 출신 아버지의 자랑스러운 아들이자, 참수리 357호 정장 &lsquo;윤영하&rsquo; 대위<br />\r\n&nbsp;아내의 든든한 남편이자, 참수리 357호 조타장 &lsquo;한상국&rsquo; 하사<br />\r\n&nbsp;어머니의 하나뿐인 아들이자, 참수리 357호 의무병 &lsquo;박동혁&rsquo; 상병<br />\r\n&nbsp;<br />\r\n&nbsp;참수리 357호 대원들은 실전을 방불케 하는 고된 훈련 속에 서로를 의지하며 가족 같은 존재가 되어간다.<br />\r\n&nbsp;무더운 여름과 함께 월드컵의 함성이 뜨거워지는 가운데, 한국과 터키의 3, 4위전 경기가 열리던 그날<br />\r\n&nbsp;서해 바다 한 가운데에 포성이 울리는데&hellip;</p>\r\n', '잡담', 4542, '127.0.0.1', 9, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:04:49', NULL, '2015-08-04 14:11:49', NULL, NULL, NULL, NULL),
+	(56, 33, 0, 7, 1, '안되겠소 쏩시다', 'RE :  RE :  이거 재미있음', '<p>ㅇㅇ</p>\r\n', '공지', 0, '127.0.0.1', 5, 2, 2, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:05:01', NULL, '2015-08-04 14:05:01', NULL, NULL, NULL, NULL),
+	(57, 1, 0, 10, 10, '누텔라', '야필패가 뭐에요???', '<p>???</p>\r\n', '잡담', 0, '127.0.0.1', 10, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:05:28', '2015-08-04 14:10:01', '2015-08-04 14:05:28', NULL, NULL, NULL, NULL),
+	(58, 1, 0, 11, 10, '누텔라', '야필패가 뭐에요???', '<p>???</p>\r\n', '잡담', 0, '127.0.0.1', 11, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:05:32', NULL, '2015-08-04 14:05:32', NULL, NULL, NULL, NULL),
+	(59, 33, 1, 12, 1, '안되겠소 쏩시다', '영화게시판 운영원칙', '<p>1초</p>\r\n', '공지', 2, '127.0.0.1', 12, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:05:34', NULL, '2015-08-06 04:38:56', NULL, NULL, NULL, NULL),
+	(60, 1, 0, 13, 10, '누텔라', '야필패가 뭐에요 ??', '<p>우왕굿</p>\r\n', '잡담', 1, '127.0.0.1', 13, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 14:06:21', NULL, '2015-08-04 14:06:21', NULL, NULL, NULL, NULL),
+	(61, 99, 0, 14, 10, '누텔라', '미안합니다', '<p>죄송합니다</p>\r\n\r\n<p>&nbsp;</p>\r\n', '반성', 0, '127.0.0.1', 14, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:06:49', NULL, '2015-08-04 14:06:49', NULL, NULL, NULL, NULL),
+	(62, 31, 0, 15, 1, '안되겠소 쏩시다', '신세계', '<p>스릴러를 꼽자</p>\r\n', NULL, 1, '127.0.0.1', 15, 0, 0, 0, 0, 1, 12, 8, NULL, 2, 0, '2015-08-04 14:06:50', NULL, '2015-08-04 14:06:56', NULL, NULL, NULL, '감시자들'),
+	(63, 99, 0, 16, 10, '누텔라', '미안합니다', '<p>죄송합니다</p>\r\n\r\n<p>&nbsp;</p>\r\n', '반성', 2, '127.0.0.1', 16, 0, 0, 0, 0, 1, 0, 0, NULL, 1, 0, '2015-08-04 14:06:57', NULL, '2015-08-04 14:42:23', NULL, NULL, NULL, NULL),
+	(64, 31, 0, 17, 1, '안되겠소 쏩시다', '본 레거시', '<p>ㅇㅇ</p>\r\n', NULL, 8, '127.0.0.1', 17, 0, 0, 0, 0, 0, 4, 16, NULL, 2, 0, '2015-08-04 14:08:23', NULL, '2015-08-06 05:28:23', NULL, NULL, NULL, '설국열차'),
+	(69, 13, 0, 21, 10, '누텔라', '한복을입고싶어요', '<p>아리랑~</p>\r\n', '잡담', 1, '127.0.0.1', 21, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 14:10:44', NULL, '2015-08-04 14:30:40', NULL, NULL, NULL, NULL),
+	(70, 32, 0, 22, 1, '안되겠소 쏩시다', '베테랑', '', '액션', 6, '127.0.0.1', 22, 0, 0, 0, 0, 2, 82, 20, NULL, 1, 0, '2015-08-04 14:10:56', NULL, '2015-08-06 05:36:00', NULL, NULL, NULL, NULL),
+	(71, 33, 0, 20, 13, 'zzz', NULL, '황정민 연기 기대된다\r\n', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 0, 1, 0, 0, NULL, 0, 0, '2015-08-04 14:11:02', NULL, NULL, NULL, NULL, NULL, NULL),
+	(72, 12, 0, 23, 10, '누텔라', '이정도 얼굴이면', '<p>남자 다씹어먹을수 있음</p>\r\n', '여자', 1, '127.0.0.1', 23, 0, 0, 0, 0, 0, 10, 2, NULL, 1, 0, '2015-08-04 14:11:11', NULL, '2015-08-04 14:11:11', NULL, NULL, NULL, NULL),
+	(73, 32, 0, 22, 13, 'zzz', NULL, '황정민 영화보고싶다!!', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 0, 1, 0, 0, NULL, 0, 0, '2015-08-04 14:11:25', NULL, NULL, NULL, NULL, NULL, NULL),
+	(74, 22, 0, 24, 10, '누텔라', '종로3가 김삿갓', '<p>꿀맛이여</p>\r\n', '맛집', 1, '127.0.0.1', 24, 0, 0, 0, 0, 0, 4, 1, NULL, 1, 0, '2015-08-04 14:12:21', NULL, '2015-08-04 14:12:28', NULL, NULL, NULL, NULL),
+	(75, 33, 0, 25, 13, 'zzz', '80년대 이영화 아시는분??', '<p>답글로 알려주세요!</p>\r\n\r\n<p>&nbsp;</p>\r\n', '잡담', 7, '127.0.0.1', 25, 0, 0, 0, 0, 2, 421, 0, NULL, 1, 0, '2015-08-04 14:13:22', NULL, '2015-08-04 14:22:04', NULL, NULL, NULL, NULL),
+	(76, 43, 0, 26, 10, '누텔라', '맥 시세점여', '<p>???</p>\r\n', '잡담', 0, '127.0.0.1', 26, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 14:14:05', NULL, '2015-08-04 14:14:05', NULL, NULL, NULL, NULL),
+	(77, 33, 0, 25, 13, 'zzz', NULL, '알려주세요 ㅜㅜ\r\n', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 0, 1, 0, 0, NULL, 0, 1, '2015-08-04 14:14:06', NULL, NULL, NULL, NULL, NULL, NULL),
+	(78, 31, 0, 3, 13, 'zzz', NULL, '비교 불가\r\n', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:15:32', NULL, NULL, NULL, NULL, NULL, NULL),
+	(79, 33, 0, 20, 1, '안되겠소 쏩시다', NULL, '황정민 잘생겼다', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 1, 0, 0, 0, NULL, 0, 0, '2015-08-04 14:19:19', NULL, NULL, NULL, NULL, NULL, NULL),
+	(80, 33, 0, 25, 1, '안되겠소 쏩시다', NULL, '라붐입니다.', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 1, 0, 0, 0, NULL, 0, 3, '2015-08-04 14:19:34', NULL, NULL, NULL, NULL, NULL, NULL),
+	(81, 33, 0, 25, 1, '안되겠소 쏩시다', NULL, '하하ㅇㅇddddddzzzz', NULL, 0, '127.0.0.1', 0, 0, 0, 2, 0, 0, 0, 0, NULL, 0, 3, '2015-08-04 14:32:41', '2015-08-04 14:52:33', NULL, NULL, NULL, NULL, NULL),
+	(82, 99, 0, 16, 10, '누텔라', NULL, 'zzvv', NULL, 0, '0:0:0:0:0:0:0:1', 0, 0, 0, 1, 0, 0, 0, 0, NULL, 0, 3, '2015-08-04 14:42:26', '2015-08-04 16:20:08', NULL, NULL, NULL, NULL, NULL),
+	(83, 99, 0, 27, 10, '누텔라', 'd', '<p>dd</p>\r\n', '잡담', 0, '0:0:0:0:0:0:0:1', 27, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 15:02:12', '2015-08-04 16:20:04', '2015-08-04 15:02:12', NULL, NULL, NULL, NULL),
+	(84, 1, 1, 28, 1, '안되겠소 쏩시다', 'd', '<p>d</p>\r\n', '공지', 0, '127.0.0.1', 28, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 15:10:35', '2015-08-04 16:19:59', '2015-08-04 15:10:35', NULL, NULL, NULL, NULL),
+	(85, 1, 1, 29, 1, '안되겠소 쏩시다', 'z', '<p>z</p>\r\n', '공지', 0, '127.0.0.1', 29, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:10:43', '2015-08-04 16:19:53', '2015-08-04 15:10:43', NULL, NULL, NULL, NULL),
+	(86, 99, 0, 30, 10, '누텔라', 'aaa', '<p>aaa</p>\r\n', '잡담', 0, '0:0:0:0:0:0:0:1', 30, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:13:44', '2015-08-04 16:19:56', '2015-08-04 15:13:44', NULL, NULL, NULL, NULL),
+	(87, 1, 1, 31, 1, '안되겠소 쏩시다', 'z', '<p>z</p>\r\n', '공지', 0, '127.0.0.1', 31, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 15:14:22', '2015-08-04 16:19:45', '2015-08-04 15:14:22', NULL, NULL, NULL, NULL),
+	(88, 1, 1, 32, 1, '안되겠소 쏩시다', 'sadfasdf', '<p>asdfasdf</p>\r\n', '공지', 0, '127.0.0.1', 32, 0, 0, 0, 0, 0, 0, 0, NULL, 2, 2, '2015-08-04 15:14:39', '2015-08-04 16:19:48', '2015-08-04 15:14:39', NULL, NULL, NULL, NULL),
+	(89, 99, 0, 33, 10, '누텔라', 'aaa', '<p>aaa</p>\r\n', '잡담', 0, '0:0:0:0:0:0:0:1', 33, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 15:14:59', '2015-08-04 16:19:42', '2015-08-04 15:14:59', NULL, NULL, NULL, NULL),
+	(90, 99, 0, 34, 10, '누텔라', 'sdfsdfasdf', '', '잡담', 0, '0:0:0:0:0:0:0:1', 34, 0, 0, 0, 0, 0, 0, 0, NULL, 1, 0, '2015-08-04 15:15:38', '2015-08-04 16:19:40', '2015-08-04 15:15:38', NULL, NULL, NULL, NULL),
+	(91, 99, 0, 35, 10, '누텔라', 'sd', '<p>asdfasdf</p>\r\n', '잡담', 0, '0:0:0:0:0:0:0:1', 35, 0, 0, 0, 0, 0, 0, 0, NULL, 2, 0, '2015-08-04 15:16:20', '2015-08-04 16:19:37', '2015-08-04 15:16:20', NULL, NULL, NULL, NULL),
+	(92, 99, 0, 36, 10, '누텔라', 'sdfsadfasdf', '', '잡담', 0, '0:0:0:0:0:0:0:1', 36, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:17:22', '2015-08-04 16:19:35', '2015-08-04 15:17:22', NULL, NULL, NULL, NULL),
+	(93, 1, 1, 37, 1, '안되겠소 쏩시다', 'sdf', '<p>asdfasdf</p>\r\n', '공지', 1, '127.0.0.1', 37, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:20:17', '2015-08-04 16:19:31', '2015-08-04 15:20:17', NULL, NULL, NULL, NULL),
+	(94, 99, 0, 38, 10, '누텔라', 'asdfas', '<p>dfasdf</p>\r\n', '잡담', 0, '0:0:0:0:0:0:0:1', 38, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:20:34', '2015-08-04 16:19:28', '2015-08-04 15:20:34', NULL, NULL, NULL, NULL),
+	(95, 1, 1, 39, 1, '안되겠소 쏩시다', 'ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ', '<p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>\r\n', '공지', 0, '127.0.0.1', 39, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:29:42', '2015-08-04 16:19:22', '2015-08-04 15:29:42', NULL, NULL, NULL, NULL),
+	(96, 99, 1, 40, 1, '안되겠소 쏩시다', 'gg', 'Gh', '공지', 0, '127.0.0.1', 40, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:30:42', '2015-08-04 16:19:20', '2015-08-04 15:30:42', NULL, NULL, NULL, NULL),
+	(97, 99, 1, 41, 1, '안되겠소 쏩시다', 'hhj', 'Hh', '공지', 0, '127.0.0.1', 41, 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-04 15:31:12', '2015-08-04 16:19:06', '2015-08-04 15:31:12', NULL, NULL, NULL, NULL),
+	(98, 32, 1, 42, 1, '안되겠소 쏩시다', '인사이드 아웃', '', '공지', 1, '121.160.182.177', 42, 0, 0, 0, 0, 0, 68, 20, NULL, 1, 0, '2015-08-06 04:08:31', NULL, '2015-08-06 04:08:31', NULL, NULL, NULL, NULL),
+	(99, 32, 1, 43, 1, '안되겠소 쏩시다', '암살', '', '공지', 1, '121.160.182.177', 43, 0, 0, 0, 0, 0, 92, 20, NULL, 1, 0, '2015-08-06 04:08:52', NULL, '2015-08-06 04:08:52', NULL, NULL, NULL, NULL),
+	(100, 32, 1, 44, 1, '안되겠소 쏩시다', 'MI5 로그네이션', '', '공지', 1, '121.160.182.177', 44, 0, 0, 0, 0, 0, 84, 20, NULL, 1, 0, '2015-08-06 04:09:09', NULL, '2015-08-06 04:09:09', NULL, NULL, NULL, NULL),
+	(101, 32, 1, 45, 1, '안되겠소 쏩시다', '클레멘타인', '', '공지', 2, '121.160.182.177', 45, 0, 0, 0, 0, 0, 32, 20, NULL, 1, 0, '2015-08-06 04:09:30', NULL, '2015-08-06 04:09:30', NULL, NULL, NULL, NULL),
+	(102, 32, 1, 46, 1, '안되겠소 쏩시다', '다찌마와 리', '', '공지', 1, '121.160.182.177', 46, 0, 0, 0, 0, 0, 77, 20, NULL, 1, 0, '2015-08-06 04:09:52', NULL, '2015-08-06 04:09:52', NULL, NULL, NULL, NULL),
+	(103, 32, 1, 47, 1, '안되겠소 쏩시다', '아마겟돈', '', '공지', 2, '121.160.182.177', 47, 0, 0, 0, 0, 0, 74, 20, NULL, 1, 0, '2015-08-06 04:10:26', NULL, '2015-08-06 04:10:26', NULL, NULL, NULL, NULL),
+	(104, 32, 1, 48, 1, '안되겠소 쏩시다', '더 록', '', '공지', 4, '121.160.182.177', 48, 0, 0, 0, 0, 0, 88, 20, NULL, 1, 0, '2015-08-06 04:10:53', NULL, '2015-08-06 05:35:51', NULL, NULL, NULL, NULL),
+	(105, 33, 0, 49, 1, '안되겠소 쏩시다', 'RE :  헐 시리즈물은 터미네이터죠', '', '잡담', 7, '121.160.182.177', 19, 1, 1, 0, 0, 0, 0, 0, NULL, 0, 0, '2015-08-06 04:34:17', NULL, '2015-08-06 04:37:24', NULL, NULL, NULL, NULL),
+	(106, 33, 0, 50, 1, '안되겠소 쏩시다', 'RE :  RE :  헐 시리즈물은 터미네이터죠', '', '잡담', 19, '121.160.182.177', 19, 2, 2, 0, 0, 0, 0, 0, NULL, 0, 2, '2015-08-06 04:37:28', '2015-08-06 04:37:47', '2015-08-06 04:37:45', NULL, NULL, NULL, NULL),
+	(107, 32, 0, 22, 1, '안되겠소 쏩시다', NULL, '황정민에 류승완이라면 믿고 볼만 하죠.', NULL, 0, '127.0.0.1', 0, 0, 0, 1, 1, 0, 0, 0, NULL, 0, 0, '2015-08-06 05:36:28', NULL, NULL, NULL, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `Board_Forum` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Board_Forum_Attachment 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Board_Forum_Attachment` (
+  `Attach_ID` int(11) NOT NULL auto_increment COMMENT '첨부번호',
+  `Post_ID` int(11) NOT NULL COMMENT '글번호',
+  `Member_Num` int(11) default NULL COMMENT '회원번호',
+  `File_Name` varchar(200) NOT NULL COMMENT '파일이름',
+  `Original_Name` varchar(200) default NULL COMMENT '원래 파일이름',
+  `Content_type` varchar(50) default NULL COMMENT '파일 형식',
+  `File_Size` int(11) NOT NULL COMMENT '파일 용량',
+  `Download_Count` int(11) NOT NULL COMMENT '다운받은 횟수',
+  `Upload_Date` datetime default NULL COMMENT '업로드한 날짜',
+  `Delete_Date` datetime default NULL COMMENT '삭제한 날짜',
+  PRIMARY KEY  (`Attach_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='첨부파일';
+
+-- 테이블 데이터 bigyo.Board_Forum_Attachment:65 rows 내보내기
+/*!40000 ALTER TABLE `Board_Forum_Attachment` DISABLE KEYS */;
+INSERT INTO `Board_Forum_Attachment` (`Attach_ID`, `Post_ID`, `Member_Num`, `File_Name`, `Original_Name`, `Content_type`, `File_Size`, `Download_Count`, `Upload_Date`, `Delete_Date`) VALUES
+	(1, 3, 2, 'MEM_jil9345_071d0dbb-d4ff-401e-8400-2d6a4b6e07e0_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 09:22:34', '2015-08-03 09:33:25'),
+	(2, 4, 2, 'MEM_jil9345_244e4468-4981-4f84-a89b-af7319c518d4_ORIGIN_02.jpg', '02.jpg', 'image/jpeg', 192857, 0, '2015-08-03 09:25:11', NULL),
+	(3, 5, 2, 'MEM_jil9345_09049d45-6395-4d10-89a2-981a85d8865c_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 09:33:14', NULL),
+	(4, 5, 2, 'MEM_jil9345_8ce12b9c-df41-40c9-9ea3-2820444cea53_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 09:33:42', NULL),
+	(5, 5, 2, 'MEM_jil9345_6c75bb28-7a81-4be5-af94-310448742a74_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 09:34:00', NULL),
+	(6, 7, 1, 'MEM_admin_1f90f8fd-92eb-45d6-bb2c-e2b858d9c8f9_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-03 09:34:20', '2015-08-03 09:46:02'),
+	(7, 7, 1, 'MEM_admin_6260202a-7643-487e-a376-54adba7562a6_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-03 09:46:07', '2015-08-03 10:17:03'),
+	(9, 7, 1, 'MEM_admin_bc18fef9-0635-4bf9-9833-5ac7d08ba97e_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-03 10:17:14', NULL),
+	(10, 20, 10, 'MEM_aaa_e06658f3-2751-4c28-937a-a8c3e5b1ccce_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 15:11:59', NULL),
+	(11, 0, 1, 'MEM_admin_4060ecf4-bf58-4444-bcad-9043ad4288f8_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-03 15:13:27', NULL),
+	(12, 0, 1, 'MEM_admin_24d1cc28-4f1d-47b6-a79d-4d8c4eb9c51d_ORIGIN_movie4.jpg', 'movie4.jpg', 'image/jpeg', 68097, 0, '2015-08-03 15:13:27', NULL),
+	(13, 0, 1, 'MEM_admin_69a116e8-dc6c-4182-a4f6-c63c1d97036b_ORIGIN_404.jpg', '404.jpg', 'image/jpeg', 44101, 0, '2015-08-03 15:13:46', NULL),
+	(14, 0, 1, 'MEM_admin_0a1f6063-e944-42b9-a4a8-99e8ff5248ee_ORIGIN_800px-IPhone_icon_red.png', '800px-IPhone_icon_red.png', 'image/png', 121372, 0, '2015-08-03 15:13:46', NULL),
+	(15, 26, 2, 'MEM_jil9345_58521121-be49-4340-b2f7-30dcf224f535_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 15:14:13', NULL),
+	(16, 26, 2, 'MEM_jil9345_b072344f-0497-43a2-a578-14370d6ebe2e_ORIGIN_201501131638367953_d_99_20150113164303.jpg', '201501131638367953_d_99_20150113164303.jpg', 'image/jpeg', 55751, 0, '2015-08-03 15:14:13', NULL),
+	(17, 0, 1, 'MEM_admin_ca21e0c8-2451-4ddb-aa16-9e7f7ab9f33a_ORIGIN_542405479_927.JPG', '542405479_927.JPG', 'image/jpeg', 50047, 0, '2015-08-03 15:15:12', NULL),
+	(18, 0, 1, 'MEM_admin_a52723ef-f28f-4e00-bdee-724fe74c5d3e_ORIGIN_1435833879_alarm-clock.png', '1435833879_alarm-clock.png', 'image/png', 3628, 0, '2015-08-03 15:15:12', NULL),
+	(19, 0, 2, 'MEM_jil9345_4d044e20-e5ec-4280-a2c2-6b35e3824ddf_ORIGIN_201501131638367953_d_99_20150113164303.jpg', '201501131638367953_d_99_20150113164303.jpg', 'image/jpeg', 55751, 0, '2015-08-03 15:15:54', NULL),
+	(20, 0, 2, 'MEM_jil9345_a2df3259-7f9c-433b-a3cc-0cab686742c5_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-03 15:15:54', NULL),
+	(21, 19, 1, 'MEM_admin_7587d98f-b6df-4775-88d9-bccc87515509_ORIGIN_404.jpg', '404.jpg', 'image/jpeg', 44101, 0, '2015-08-03 15:43:55', NULL),
+	(22, 29, 10, 'MEM_aaa_45e4880e-b560-4d53-bd7a-2bb874f88eb9_ORIGIN_800px-IPhone_icon_aqua.png', '800px-IPhone_icon_aqua.png', 'image/png', 154021, 0, '2015-08-04 07:37:37', NULL),
+	(23, 29, 10, 'MEM_aaa_ed984e86-3922-448a-9016-4d8f82ddf002_ORIGIN_2222.jpg', '2222.jpg', 'image/jpeg', 22597, 0, '2015-08-04 07:37:37', NULL),
+	(24, 38, 9, 'MEM_greyhound_38bb9a10-c7c9-4222-91cd-f6fe47634eb1_ORIGIN_barbecue.JPG', 'barbecue.JPG', 'image/jpeg', 59622, 0, '2015-08-04 11:08:22', NULL),
+	(25, 41, 1, 'MEM_admin_5d9c0805-e748-4acf-a621-9f5b44ef023d_ORIGIN_1435833879_alarm-clock.png', '1435833879_alarm-clock.png', 'image/png', 3628, 0, '2015-08-04 11:16:19', NULL),
+	(26, 45, 1, 'MEM_admin_94e09db0-41b4-42b1-90ad-9baf6ecebe21_ORIGIN_movie1.jpg', 'movie1.jpg', 'image/jpeg', 148760, 0, '2015-08-04 14:01:10', NULL),
+	(27, 45, 1, 'MEM_admin_2ef36576-bd8e-42f6-9c74-a5ea94d6cc81_ORIGIN_movie3.jpg', 'movie3.jpg', 'image/jpeg', 141167, 0, '2015-08-04 14:01:10', NULL),
+	(28, 47, 1, 'MEM_admin_89e0c1cb-b3e8-4f5e-9ecb-f6ea591a5750_ORIGIN_movie4.jpg', 'movie4.jpg', 'image/jpeg', 68097, 0, '2015-08-04 14:01:46', NULL),
+	(29, 47, 1, 'MEM_admin_76448d15-6ba4-4589-ac1a-8f91228e0f36_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-04 14:01:46', NULL),
+	(30, 50, 1, 'MEM_admin_5405b00d-bf81-4c4b-a26a-9126633f7b80_ORIGIN_movie6.jpg', 'movie6.jpg', 'image/jpeg', 272614, 0, '2015-08-04 14:03:11', NULL),
+	(31, 50, 1, 'MEM_admin_97f50cea-cb42-4695-a83e-069a5a63773a_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-04 14:03:11', NULL),
+	(32, 51, 10, 'MEM_aaa_6eb99e0a-e804-4b8e-a69c-74b17a5554ee_ORIGIN_20150709_2497306_1436422062..jpg_99_20150709150906.jpg', '20150709_2497306_1436422062..jpg_99_20150709150906.jpg', 'image/jpeg', 49852, 0, '2015-08-04 14:03:22', NULL),
+	(33, 51, 10, 'MEM_aaa_b04cb68f-b85d-4412-9423-f71d4ff49978_ORIGIN_3b91e49d314eb553afc7c276d618818a.jpeg', '3b91e49d314eb553afc7c276d618818a.jpeg', 'image/jpeg', 356674, 0, '2015-08-04 14:03:22', NULL),
+	(34, 60, 10, 'MEM_aaa_d18ca32d-0095-4f07-972f-47c47d10ba97_ORIGIN_물음표.png', '물음표.png', 'image/png', 294053, 0, '2015-08-04 14:06:21', NULL),
+	(35, 62, 1, 'MEM_admin_a39e13e2-3a62-4682-8f1d-10b2b47c1e0e_ORIGIN_aaa.jpg', 'aaa.jpg', 'image/jpeg', 8347, 0, '2015-08-04 14:06:50', NULL),
+	(36, 62, 1, 'MEM_admin_4e35718f-cd04-4d24-9259-d388da5d264c_ORIGIN_aaaa.jpg', 'aaaa.jpg', 'image/jpeg', 134971, 0, '2015-08-04 14:06:50', NULL),
+	(37, 63, 10, 'MEM_aaa_fc396086-44ba-4d2a-a308-6602554ef2d5_ORIGIN_1 - Balance.png', '1 - Balance.png', 'image/png', 53540, 0, '2015-08-04 14:06:57', NULL),
+	(38, 64, 1, 'MEM_admin_74e46139-db92-4603-96fd-3381d5a34475_ORIGIN_aaaaa.jpg', 'aaaaa.jpg', 'image/jpeg', 286821, 0, '2015-08-04 14:08:23', NULL),
+	(39, 64, 1, 'MEM_admin_b798db3c-3f7a-4c5f-842b-47e8489e2343_ORIGIN_aaaaaa.jpg', 'aaaaaa.jpg', 'image/jpeg', 129865, 0, '2015-08-04 14:08:23', NULL),
+	(40, 66, 10, 'MEM_aaa_7c3906b8-a481-4884-9ad7-40ee7285598e_ORIGIN_02.jpg', '02.jpg', 'image/jpeg', 192857, 0, '2015-08-04 14:09:06', NULL),
+	(41, 66, 10, 'MEM_aaa_60e6e1a5-9a91-405a-a497-0a7657ac0a3d_ORIGIN_IMG_0981.jpg', 'IMG_0981.jpg', 'image/jpeg', 144240, 0, '2015-08-04 14:09:06', NULL),
+	(42, 67, 13, 'MEM_zzz_c7fb18b9-ba86-4ca0-9e0b-c93b1c4b881f_ORIGIN_ring2.png', 'ring2.png', 'image/png', 579613, 0, '2015-08-04 14:10:01', NULL),
+	(43, 68, 1, 'MEM_admin_e552f2d4-eceb-44f8-80a1-45ff76df88e1_ORIGIN_movie_image.jpg', 'movie_image.jpg', 'image/jpeg', 1965749, 0, '2015-08-04 14:10:11', NULL),
+	(44, 69, 10, 'MEM_aaa_c17a8d74-11b4-441d-9a17-6a4c1612f60c_ORIGIN_201501131638367953_d_99_20150113164303.jpg', '201501131638367953_d_99_20150113164303.jpg', 'image/jpeg', 55751, 0, '2015-08-04 14:10:44', NULL),
+	(45, 70, 1, 'MEM_admin_fbceba71-a99d-4cd6-ae58-a1958bf0e027_ORIGIN_movie_image.jpg', 'movie_image.jpg', 'image/jpeg', 1965749, 0, '2015-08-04 14:10:56', NULL),
+	(46, 72, 10, 'MEM_aaa_5434d8d0-f4dc-4886-8a97-1f92e46c7533_ORIGIN_201501131638367953_d_99_20150113164303.jpg', '201501131638367953_d_99_20150113164303.jpg', 'image/jpeg', 55751, 0, '2015-08-04 14:11:11', NULL),
+	(47, 74, 10, 'MEM_aaa_4deae055-e307-4f6d-8027-c63a3cdb59f2_ORIGIN_IMG_0981.jpg', 'IMG_0981.jpg', 'image/jpeg', 144240, 0, '2015-08-04 14:12:21', NULL),
+	(48, 75, 13, 'MEM_zzz_f88e2423-7f1a-423e-8ed2-fa6f9d9444be_ORIGIN_80.png', '80.png', 'image/png', 496444, 0, '2015-08-04 14:13:22', NULL),
+	(49, 76, 10, 'MEM_aaa_b67d54c5-2008-410f-b1df-dfd068b85f11_ORIGIN_Tulips.jpg', 'Tulips.jpg', 'image/jpeg', 620888, 0, '2015-08-04 14:14:05', NULL),
+	(50, 83, 10, 'MEM_aaa_decd34ec-8f51-44b8-9434-0aa09ff7f7b4_ORIGIN_scale.png', 'scale.png', 'image/png', 1274, 0, '2015-08-04 15:02:12', NULL),
+	(51, 84, 1, 'MEM_admin_d58649bf-fe70-4af0-a14f-c0d0a3683070_ORIGIN_542405479_927.JPG', '542405479_927.JPG', 'image/jpeg', 50047, 0, '2015-08-04 15:10:35', NULL),
+	(52, 87, 1, 'MEM_admin_f639341b-f9a2-41bb-bf8d-df2e22d40526_ORIGIN_1435833879_alarm-clock.png', '1435833879_alarm-clock.png', 'image/png', 3628, 0, '2015-08-04 15:14:22', NULL),
+	(53, 88, 1, 'MEM_admin_e19a72e4-7502-4959-be7f-1a7bd9eae2e4_ORIGIN_542405479_927.JPG', '542405479_927.JPG', 'image/jpeg', 50047, 0, '2015-08-04 15:14:39', NULL),
+	(54, 89, 10, 'MEM_aaa_4d2f5e30-b4f1-41f0-a5fa-2a4120ec3a59_ORIGIN_favicon.ico', 'favicon.ico', 'image/x-icon', 1150, 0, '2015-08-04 15:14:59', NULL),
+	(55, 90, 10, 'MEM_aaa_819cbd96-fe54-4003-8370-3759639916f8_ORIGIN_1437217825_scales.png', '1437217825_scales.png', 'image/png', 9535, 0, '2015-08-04 15:15:38', NULL),
+	(56, 88, 1, 'MEM_admin_e48dacdb-4fb9-438e-9d14-eab552b09969_ORIGIN_1435833885_alarm-clock.png', '1435833885_alarm-clock.png', 'image/png', 18430, 0, '2015-08-04 15:15:54', NULL),
+	(57, 88, 1, 'MEM_admin_f86fb4d4-c51d-4dd3-b275-3ff9446f68f3_ORIGIN_542405479_927.JPG', '542405479_927.JPG', 'image/jpeg', 50047, 0, '2015-08-04 15:15:54', NULL),
+	(58, 91, 10, 'MEM_aaa_04bb2bb8-da37-4061-ba9e-3174aa285123_ORIGIN_1437217825_scales.png', '1437217825_scales.png', 'image/png', 9535, 0, '2015-08-04 15:16:20', NULL),
+	(59, 91, 10, 'MEM_aaa_3ba6b725-b5ab-413c-a6b7-3dd89787cbdc_ORIGIN_favicon.ico', 'favicon.ico', 'image/x-icon', 1150, 0, '2015-08-04 15:16:20', NULL),
+	(60, 98, 1, 'MEM_admin_3d2bc377-5ca5-4c7c-8acf-195eac7d43f4_ORIGIN_movie0.jpg', 'movie0.jpg', 'image/jpeg', 640380, 0, '2015-08-06 04:08:31', NULL),
+	(61, 99, 1, 'MEM_admin_2a598d2f-be6e-46bf-bf51-af54339fba9e_ORIGIN_movie8.jpg', 'movie8.jpg', 'image/jpeg', 7163531, 0, '2015-08-06 04:08:52', NULL),
+	(62, 100, 1, 'MEM_admin_185506c0-3646-403b-8ec0-cdb2da328869_ORIGIN_movie9.jpg', 'movie9.jpg', 'image/jpeg', 643139, 0, '2015-08-06 04:09:09', NULL),
+	(63, 101, 1, 'MEM_admin_d71fbfdf-972d-4bd8-9705-32f299c921d9_ORIGIN_movie1.jpg', 'movie1.jpg', 'image/jpeg', 148760, 0, '2015-08-06 04:09:30', NULL),
+	(64, 102, 1, 'MEM_admin_d383c3b8-bc2a-4e9c-9842-46556ebb8009_ORIGIN_movie5.jpg', 'movie5.jpg', 'image/jpeg', 68525, 0, '2015-08-06 04:09:52', NULL),
+	(65, 103, 1, 'MEM_admin_c1d7929f-b266-4d5d-a8e9-b05bf160a493_ORIGIN_movie4.jpg', 'movie4.jpg', 'image/jpeg', 68097, 0, '2015-08-06 04:10:26', NULL),
+	(66, 104, 1, 'MEM_admin_e30fcd51-483e-4d33-a01b-b7273e268fcd_ORIGIN_movie3.jpg', 'movie3.jpg', 'image/jpeg', 141167, 0, '2015-08-06 04:10:53', NULL);
+/*!40000 ALTER TABLE `Board_Forum_Attachment` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Board_Forum_Log 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Board_Forum_Log` (
+  `Log_ID` int(11) NOT NULL auto_increment COMMENT '고유번호',
+  `Part_ID` int(11) NOT NULL COMMENT '게시판 코드',
+  `Post_ID` int(11) NOT NULL COMMENT '글번호',
+  `Before_Subject` varchar(50) default NULL COMMENT '제목',
+  `Before_Content` text NOT NULL COMMENT '내용',
+  `Modify_Date` datetime NOT NULL COMMENT '수정일자',
+  PRIMARY KEY  (`Log_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='게시물 수정시 로그';
+
+-- 테이블 데이터 bigyo.Board_Forum_Log:23 rows 내보내기
+/*!40000 ALTER TABLE `Board_Forum_Log` DISABLE KEYS */;
+INSERT INTO `Board_Forum_Log` (`Log_ID`, `Part_ID`, `Post_ID`, `Before_Subject`, `Before_Content`, `Modify_Date`) VALUES
+	(1, 1, 3, '스텔라-티저', '', '2015-08-03 09:32:46'),
+	(2, 1, 3, '스텔라-티저', '', '2015-08-03 09:33:14'),
+	(3, 1, 3, '스텔라-티저', '', '2015-08-03 09:33:42'),
+	(4, 1, 3, '스텔라-티저', '<p>ttt</p>\r\n', '2015-08-03 09:34:00'),
+	(5, 1, 7, '다찌마와 리', '<p>헛</p>\r\n', '2015-08-03 09:46:07'),
+	(6, 1, 7, '다찌마와 리', '<p>헛</p>\r\n', '2015-08-03 09:50:48'),
+	(7, 1, 9, '하하 요즘엔 모쏠 5년차도 호소하는군요', '<p>난 15년짼데...</p>\r\n', '2015-08-03 10:00:45'),
+	(8, 1, 7, '다찌마와 리', '<p>헛</p>\r\n', '2015-08-03 10:17:14'),
+	(9, 1, 19, 'zzz', '<p>zzzsdfasdfasfd</p>\r\n', '2015-08-03 14:50:09'),
+	(10, 1, 19, 'zzz', '<p>zzzsdfasdfasfddsaf</p>\r\n\r\n<p>ㄴㅁㅇㄻㄴㅇㄻㄴㅇㄹ</p>\r\n', '2015-08-03 15:43:55'),
+	(11, 1, 44, '여름엔 시원한 액션 연평대전', '<p>월드컵의 열기로 뜨거웠던 2002년 6월</p>\r\n\r\n<p>해군 출신 아버지의 자랑스러운 아들이자, 참수리 357호 정장 &lsquo;윤영하&rsquo; 대위<br />\r\n&nbsp;아내의 든든한 남편이자, 참수리 357호 조타장 &lsquo;한상국&rsquo; 하사<br />\r\n&nbsp;어머니의 하나뿐인 아들이자, 참수리 357호 의무병 &lsquo;박동혁&rsquo; 상병<br />\r\n&nbsp;<br />\r\n&nbsp;참수리 357호 대원들은 실전을 방불케 하는 고된 훈련 속에 서로를 의지하며 가족 같은 존재가 되어간다.<br />\r\n&nbsp;무더운 여름과 함께 월드컵의 함성이 뜨거워지는 가운데, 한국과 터키의 3, 4위전 경기가 열리던 그날<br />\r\n&nbsp;서해 바다 한 가운데에 포성이 울리는데&hellip;</p>\r\n', '2015-08-04 12:47:43'),
+	(12, 33, 77, NULL, '알려주세요 ㅜㅜ\r\n', '2015-08-04 14:14:31'),
+	(13, 33, 81, NULL, '하하ㅇㅇ', '2015-08-04 14:32:51'),
+	(14, 99, 82, NULL, 'zzvv', '2015-08-04 14:42:31'),
+	(15, 33, 80, NULL, '라붐asdfd', '2015-08-04 14:48:18'),
+	(16, 33, 81, NULL, '하하ㅇㅇddd', '2015-08-04 14:48:36'),
+	(17, 99, 82, NULL, 'zzvvdd', '2015-08-04 14:50:28'),
+	(18, 99, 82, NULL, 'zzvvvvvvv', '2015-08-04 14:50:37'),
+	(19, 33, 81, NULL, '하하ㅇㅇddd', '2015-08-04 14:52:20'),
+	(20, 33, 80, NULL, '라붐asdfd', '2015-08-04 14:52:38'),
+	(21, 1, 88, 'sadfasdf', '<p>asdfasdf</p>\r\n', '2015-08-04 15:15:54'),
+	(22, 1, 106, 'RE :  RE :  헐 시리즈물은 터미네이터죠', '', '2015-08-06 04:37:40'),
+	(23, 33, 80, NULL, '라붐', '2015-08-06 04:41:28');
+/*!40000 ALTER TABLE `Board_Forum_Log` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Board_Market 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Board_Market` (
+  `Post_ID` int(11) NOT NULL auto_increment COMMENT '글번호',
+  `Member_Num` int(11) NOT NULL COMMENT '회원번호',
+  `Member_Name` varchar(20) NOT NULL COMMENT '별명',
+  `Category` varchar(50) NOT NULL COMMENT '카테고리',
+  `Subject` varchar(50) NOT NULL COMMENT '제목',
+  `Content` varchar(5000) NOT NULL COMMENT '내용',
+  `Count` int(11) NOT NULL default '0' COMMENT '카운터',
+  `IP` varchar(50) default NULL COMMENT 'IP',
+  `Comment_Count` int(11) NOT NULL default '0' COMMENT '댓글갯수',
+  `Comment_Num` int(11) NOT NULL default '0' COMMENT '댓글번호',
+  `ComCom_Code` varchar(10) default NULL COMMENT '대댓글 코드',
+  `Attachment` int(11) NOT NULL default '0' COMMENT '첨부파일',
+  `Post_Date` datetime default NULL COMMENT '작성일자',
+  `Delete_Date` datetime default NULL COMMENT '삭제일자',
+  `Price` varchar(50) default NULL COMMENT '가격',
+  `Contact` varchar(50) default NULL COMMENT '연락처',
+  `Method` varchar(50) default NULL COMMENT '거래방법',
+  `Sold_out` int(1) default '0' COMMENT '거래완료',
+  PRIMARY KEY  (`Post_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='거래중0\r\n거래종료1\r\n\r\n';
+
+-- 테이블 데이터 bigyo.Board_Market:0 rows 내보내기
+/*!40000 ALTER TABLE `Board_Market` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Board_Market` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Board_Market_Attachment 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Board_Market_Attachment` (
+  `Attach_Num` int(11) NOT NULL auto_increment COMMENT '첨부번호',
+  `Post_Num` int(11) default NULL COMMENT '글번호',
+  `Member_Num` int(11) default NULL COMMENT '회원번호',
+  `File_Name` varchar(1000) default NULL COMMENT '퍄앨이름',
+  `Download_Count` int(11) default NULL COMMENT '다운받은 횟수',
+  `Upload_Date` datetime default NULL COMMENT '업로드한 날짜',
+  PRIMARY KEY  (`Attach_Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='첨부파일';
+
+-- 테이블 데이터 bigyo.Board_Market_Attachment:0 rows 내보내기
+/*!40000 ALTER TABLE `Board_Market_Attachment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Board_Market_Attachment` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Like_Avg 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Like_Avg` (
+  `Post_ID` int(11) NOT NULL,
+  `Likes` int(11) unsigned NOT NULL default '0',
+  `Dislike` int(11) unsigned NOT NULL default '0',
+  `Male_Like` int(11) unsigned NOT NULL default '0',
+  `Male_Dislike` int(11) unsigned NOT NULL default '0',
+  `Female_Like` int(11) unsigned NOT NULL default '0',
+  `Female_Dislike` int(11) unsigned NOT NULL default '0',
+  `Age_Like` int(11) unsigned NOT NULL default '0',
+  `Age_Dislike` int(11) unsigned NOT NULL default '0',
+  `Like_List` text,
+  PRIMARY KEY  (`Post_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 테이블 데이터 bigyo.Like_Avg:107 rows 내보내기
+/*!40000 ALTER TABLE `Like_Avg` DISABLE KEYS */;
+INSERT INTO `Like_Avg` (`Post_ID`, `Likes`, `Dislike`, `Male_Like`, `Male_Dislike`, `Female_Like`, `Female_Dislike`, `Age_Like`, `Age_Dislike`, `Like_List`) VALUES
+	(1, 0, 1, 0, 1, 0, 0, 0, 30, '0#1$'),
+	(2, 1, 1, 1, 1, 0, 0, 24, 30, '0#2$#1$'),
+	(3, 10, 3, 10, 3, 0, 0, 74, 0, '0#2$#1$#9$'),
+	(4, 8, 2, 8, 2, 0, 0, 54, 0, '0#2$#1$'),
+	(5, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(6, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(7, 7, 2, 7, 2, 0, 0, 52, 0, '0#1$#10$'),
+	(8, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(9, 0, 1, 0, 1, 0, 0, 0, 30, '0#1$'),
+	(10, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(11, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(12, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(13, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(14, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(15, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(16, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(17, 1, 0, 1, 0, 0, 0, 30, 0, '0#1$'),
+	(18, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(19, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(20, 1, 0, 1, 0, 0, 0, 22, 0, '0#10$'),
+	(21, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(22, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(23, 1, 0, 1, 0, 0, 0, 24, 0, '0#2$'),
+	(24, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(25, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(26, 2, 0, 2, 0, 0, 0, 54, 0, '0#2$#1$'),
+	(27, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(28, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(29, 1, 0, 1, 0, 0, 0, 30, 0, '0#1$'),
+	(30, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(31, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(32, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(33, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(34, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(35, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(36, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(37, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(38, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(39, 4, 1, 4, 1, 0, 0, 30, 0, '0#1$'),
+	(40, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(41, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(42, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(43, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(44, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(45, 1, 0, 1, 0, 0, 0, 30, 0, '0#1$'),
+	(46, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(47, 1, 1, 1, 1, 0, 0, 25, 30, '0#1$#13$'),
+	(48, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(49, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(50, 2, 0, 2, 0, 0, 0, 55, 0, '0#1$#13$'),
+	(51, 1, 1, 1, 1, 0, 0, 22, 30, '0#10$#1$'),
+	(52, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(53, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(54, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(55, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(56, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(57, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(58, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(59, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(60, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(61, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(62, 2, 0, 2, 0, 0, 0, 55, 0, '0#1$#13$'),
+	(63, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(64, 4, 16, 1, 11, 3, 1, 120, 468, '0#1$#13$'),
+	(65, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(66, 0, 1, 0, 1, 0, 0, 0, 22, '0#10$'),
+	(67, 1, 0, 1, 0, 0, 0, 25, 0, '0#13$'),
+	(68, 1, 0, 1, 0, 0, 0, 25, 0, '0#13$'),
+	(69, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(70, 82, 20, 57, 12, 25, 8, 588, 0, '0#1$'),
+	(71, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(72, 10, 2, 10, 2, 0, 0, 52, 0, '0#10$#1$'),
+	(73, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(74, 4, 1, 4, 1, 0, 0, 22, 0, '0#10$'),
+	(75, 1, 0, 1, 0, 0, 0, 25, 0, '0#13$'),
+	(76, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(77, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(78, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(79, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(80, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(81, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(82, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(83, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(84, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(85, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(86, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(87, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(88, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(89, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(90, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(91, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(92, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(93, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(94, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(95, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(96, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(97, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(98, 68, 20, 35, 12, 33, 8, 588, 0, '0#1$'),
+	(99, 92, 20, 57, 12, 35, 8, 588, 0, NULL),
+	(100, 84, 20, 50, 12, 34, 8, 588, 0, NULL),
+	(101, 32, 20, 12, 12, 20, 8, 588, 0, NULL),
+	(102, 77, 20, 57, 12, 20, 8, 588, 0, NULL),
+	(103, 74, 20, 52, 12, 22, 8, 588, 0, NULL),
+	(104, 88, 20, 60, 12, 28, 8, 588, 0, NULL),
+	(105, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(106, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
+	(107, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+/*!40000 ALTER TABLE `Like_Avg` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Manage_Board 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Manage_Board` (
+  `Board_ID` int(11) NOT NULL COMMENT '고유번호',
+  `Board_Name` varchar(30) NOT NULL COMMENT '게시판 이름',
+  `Board_Title` varchar(30) NOT NULL COMMENT '게시판 타이틀',
+  `Categories` text NOT NULL COMMENT '카테고리',
+  `Page_Per_Record` int(4) NOT NULL COMMENT '페이지당 게시물 숫자',
+  `Block_Per_Page` int(4) NOT NULL COMMENT '블락당 페이지 숫자',
+  `Attachment_Num` int(4) unsigned NOT NULL COMMENT '첨부파일 숫자',
+  `Hot_Count` int(4) NOT NULL COMMENT 'HOT 게시물 조회수',
+  `Hot_Comment` int(4) NOT NULL COMMENT 'HOT 코멘트 수',
+  `Hot_Like` int(4) NOT NULL COMMENT 'HOT 좋아요 수',
+  `Hot_Dislike` int(4) NOT NULL COMMENT 'HOT 싫어요 수',
+  `Post_Point` int(4) NOT NULL COMMENT '게시물 작성 포인트',
+  `Read_Point` int(4) NOT NULL COMMENT '게시물 조회 포인트',
+  `Comment_Point` int(4) NOT NULL COMMENT '댓글 작성 포인트',
+  `Selected_Point` int(4) NOT NULL COMMENT '답변 채택 포인트',
+  `Download_Point` int(4) NOT NULL COMMENT '다운로드 포인트',
+  `Vote_Point` int(4) NOT NULL COMMENT '투표 포인트',
+  `Like_Point` int(4) NOT NULL COMMENT '좋아요 포인트',
+  `Dislike_Point` int(4) NOT NULL COMMENT '싫어요 포인트',
+  `View_Level` int(2) NOT NULL COMMENT '게시판 목록 읽기 권한',
+  `Post_Level` int(2) NOT NULL COMMENT '게시판 쓰기 권한',
+  `Read_Level` int(2) NOT NULL COMMENT '게시판 읽기 권한',
+  `Search_Level` int(2) NOT NULL COMMENT '검색 권한',
+  `Comment_Level` int(2) NOT NULL COMMENT '코멘트 권한',
+  `Attachment_upload_level` int(2) NOT NULL COMMENT '파일 업로드 권한',
+  `Attachment_download_level` int(2) NOT NULL COMMENT '파일 다운로드 권한',
+  `Like_Level` int(2) NOT NULL COMMENT '좋아요/싫어요 권한',
+  `Vote_Level` int(2) NOT NULL COMMENT '투표 권한',
+  `IP_View_Level` int(2) NOT NULL COMMENT 'IP 보이기 권한',
+  `Notice_Level` int(2) NOT NULL COMMENT '공지 권한',
+  PRIMARY KEY  (`Board_ID`),
+  UNIQUE KEY `Board_Name` (`Board_Name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='각 게시판을 관리하는 테이블입니다.';
+
+-- 테이블 데이터 bigyo.Manage_Board:20 rows 내보내기
+/*!40000 ALTER TABLE `Manage_Board` DISABLE KEYS */;
+INSERT INTO `Manage_Board` (`Board_ID`, `Board_Name`, `Board_Title`, `Categories`, `Page_Per_Record`, `Block_Per_Page`, `Attachment_Num`, `Hot_Count`, `Hot_Comment`, `Hot_Like`, `Hot_Dislike`, `Post_Point`, `Read_Point`, `Comment_Point`, `Selected_Point`, `Download_Point`, `Vote_Point`, `Like_Point`, `Dislike_Point`, `View_Level`, `Post_Level`, `Read_Level`, `Search_Level`, `Comment_Level`, `Attachment_upload_level`, `Attachment_download_level`, `Like_Level`, `Vote_Level`, `IP_View_Level`, `Notice_Level`) VALUES
+	(23, 'Food_Forum', '음식 포럼 게시판', '#잡담 #질문 #고민 #자랑', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(13, 'Fashion_Forum', '패션 포럼 게시판', '#잡담 #질문 #고민 #자랑', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(43, 'Smart_Forum', '스마트 포럼 게시판', '#잡담 #질문 #고민 #자랑', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(33, 'Movie_Forum', '영화 포럼 게시판', '#잡담 #질문 #고민 #자랑', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(99, 'Exile', '유배지', '#잡담 #반성 #항의 #더러워서 내가 나간다', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(1, 'Free_Board', '자유게시판', '#잡담 #질문 #고민 #자랑', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(31, 'Movie_Bigyo', '영화 비교 게시판', '#진행중 #완료', 4, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(32, 'Movie_Rating', '영화 평가 게시판', '#액션 #멜로 #코믹 #드라마', 8, 3, 4, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(34, 'Movie_Gallery', '영화 갤러리 게시판', '#잡담 #질문 #고민 #자랑', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(2, 'Question', '무엇이든 물어보세요', '#잡담 #질문 #고민 #자랑', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(3, 'Market', '회원 중고장터', '#팝니다 #삽니다 #교환합시다 #그냥드려요', 10, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(11, 'Fashion_Bigyo', '패션 비교 게시판', '#진행중 #완료', 4, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(12, 'Fashion_Rating', '패션 평가 게시판', '#여자 #남자 #중립', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(14, 'Fashion_Gallery', '패션 갤러리 게시판', '#여자 #남자 #중립', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(21, 'Food_Bigyo', '음식 비교 게시판', '#진행중 #완료', 4, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(22, 'Food_Rating', '음식 평가 게시판', '#맛집 #편의점 #레시피', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(24, 'Food_Gallery', '음식 갤러리 게시판', '#잡담 #질문 #고민 #자랑', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(41, 'Smart_Bigyo', '스마트 비교 게시판', '#진행중 #완료', 4, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(42, 'Smart_Rating', '스마트 평가 게시판', '#스마트폰 #태블릿 #기타 디바이스', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5),
+	(44, 'Smart_Gallery', '스마트 갤러리 게시판', '#잡담 #질문 #고민 #자랑', 8, 3, 3, 100, 20, 30, 10, 10, 0, 2, 0, 0, 0, 1, -1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 5);
+/*!40000 ALTER TABLE `Manage_Board` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Manage_Etc 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Manage_Etc` (
+  `New_Posts_View` int(2) NOT NULL COMMENT '최신글 보여줄 숫자',
+  `Nickname_Change` int(4) NOT NULL COMMENT '별명 변경 제한 일수',
+  `Read_Only_Member` int(4) NOT NULL COMMENT '가입후 눈팅 일수',
+  `Day_Write_Count` int(4) NOT NULL COMMENT '하루 게시글 제한',
+  `Message_Keep` int(4) NOT NULL COMMENT '쪽지 보관일수',
+  `Message_Point` int(4) NOT NULL COMMENT '쪽지 발송시 포인트'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='기타 설정을 위한 테이블입니다.';
+
+-- 테이블 데이터 bigyo.Manage_Etc:7 rows 내보내기
+/*!40000 ALTER TABLE `Manage_Etc` DISABLE KEYS */;
+INSERT INTO `Manage_Etc` (`New_Posts_View`, `Nickname_Change`, `Read_Only_Member`, `Day_Write_Count`, `Message_Keep`, `Message_Point`) VALUES
+	(10, 15, 7, 10, 30, -5),
+	(10, 15, 7, 10, 30, -5),
+	(10, 15, 7, 10, 30, -5),
+	(10, 15, 7, 10, 30, -5),
+	(10, 15, 7, 10, 30, -5),
+	(10, 15, 7, 10, 30, -5),
+	(10, 15, 7, 10, 30, -5);
+/*!40000 ALTER TABLE `Manage_Etc` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '회원번호',
+  `ID` varchar(20) default NULL COMMENT '아이디',
+  `Facebook` varchar(40) default NULL COMMENT '페이스북',
+  `Twitter` varchar(40) default NULL COMMENT '트위터',
+  `Name` varchar(50) NOT NULL COMMENT '별명',
+  `Pass` varchar(2000) NOT NULL COMMENT '비밀번호',
+  `Email` varchar(100) NOT NULL default ' ' COMMENT '이메일',
+  `About` varchar(500) default ' ' COMMENT '자기소개',
+  `Signature` text COMMENT '서명',
+  `Gender` varchar(140) default 'male' COMMENT '성별',
+  `Birth` int(4) default '1990' COMMENT '출생년도',
+  `Point` int(11) default '0' COMMENT '포인트',
+  `Level` int(2) default '1' COMMENT '등급',
+  `Picture` varchar(100) default '/images/members/basic.jpg' COMMENT '사진',
+  `Interest` varchar(100) default NULL COMMENT '관심사항',
+  `Message` varchar(10) NOT NULL default '전체 수락' COMMENT '쪽지수신범위',
+  `Join_Date` datetime default NULL COMMENT '가입날짜',
+  `Last_Login_Date` datetime default NULL COMMENT '최근접속',
+  `Prison_Break` datetime default NULL COMMENT '마지막징계',
+  PRIMARY KEY  (`Num`),
+  UNIQUE KEY `Name` (`Name`),
+  UNIQUE KEY `ID` (`ID`),
+  UNIQUE KEY `Facebook_Twitter` (`Facebook`,`Twitter`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='회원정보 테이블입니다.';
+
+-- 테이블 데이터 bigyo.Members:16 rows 내보내기
+/*!40000 ALTER TABLE `Members` DISABLE KEYS */;
+INSERT INTO `Members` (`Num`, `ID`, `Facebook`, `Twitter`, `Name`, `Pass`, `Email`, `About`, `Signature`, `Gender`, `Birth`, `Point`, `Level`, `Picture`, `Interest`, `Message`, `Join_Date`, `Last_Login_Date`, `Prison_Break`) VALUES
+	(1, 'admin', NULL, NULL, '안되겠소 쏩시다', '47bce5c74f589f4867dbd57e9ca9f808', '', ' ', '백발백중의 정신으로 모두를 고자로 만들겠습니다.', 'male', 1985, 38211, 5, '/images/members/sanghai.png', NULL, '전체 수락', '2015-07-27 09:12:24', NULL, '2015-08-04 11:45:50'),
+	(2, 'jil9345', NULL, NULL, '간지난다 간진일', 'e754223f77e0935212493d375735cdff', 'nujaves@naver.com', '난 이뻐', '간지난다 간진일', 'male', 1991, 21275, 5, '/images/members/gjin.jpg', NULL, '전체 수락', '2015-07-28 09:08:43', NULL, '2015-08-04 11:45:50'),
+	(3, 'jin', NULL, NULL, '진중권', '47bce5c74f589f4867dbd57e9ca9f808', '', ' ', '루비야 뭐하니', 'male', 1690, 3452, 1, '/images/members/jin.jpg', NULL, '전체 수락', '2015-08-03 09:15:52', NULL, '2015-08-04 11:45:50'),
+	(4, 'bbb', NULL, NULL, '모달황제 백광덕', '47bce5c74f589f4867dbd57e9ca9f808', '', ' ', 'AJAX 황제로 거듭나고 싶습니다.', 'male', 1972, 3312, 1, '/images/members/bgd.jpg', NULL, '전체 수락', '2015-08-03 09:20:23', NULL, '2015-08-04 11:45:50'),
+	(5, 'pepsi', NULL, NULL, '둠둠둠두둠펩시맨', '47bce5c74f589f4867dbd57e9ca9f808', ' ', ' ', '둠둠 둠 두둠 둠둠 둠 두둠 펩시매앤~', 'female', 1992, 5422, 1, '/images/members/pepsi.jpg', NULL, '전체 수락', '2015-08-03 09:21:53', NULL, '2015-08-04 11:45:50'),
+	(10, 'nutel', NULL, NULL, '누텔라', '47bce5c74f589f4867dbd57e9ca9f808', 'asdf@asdf.com', ' ', '누텔라는 전세계 헤이즐넛의 30%를 사용하고 있습니다.', 'male', 1993, 697, 1, '/images/members/nutella2.gif', NULL, '전체 수락', '2015-08-03 10:03:34', NULL, '2015-10-30 14:36:01'),
+	(7, 'remusyob', NULL, NULL, '두치와 뿌꾸', 'b5a1fc2085986034e448d2ccc5bb9703', 'zz90@mate.com', 'Hellow', '한치두치세치네치 뿌꾸빵 뿌꾸빵', 'female', 1988, 1221, 1, '/images/members/duchi.jpg', NULL, '전체 수락', '2015-08-03 09:24:53', NULL, '2015-08-04 11:45:50'),
+	(8, 'kkk', NULL, NULL, '방구석 폐인', '47bce5c74f589f4867dbd57e9ca9f808', 'zz90@mate.com', 'hihi', 'bkd', 'male', 1991, 123, 1, '/images/members/baku8.png', NULL, '전체 수락', '2015-08-03 09:26:15', NULL, '2015-08-04 11:45:50'),
+	(9, 'greyhound', NULL, NULL, '멍멍2', 'f2d71a8ff50e061f670b037ef4114cb5', 'greyhound@gmail.com', '좋게좋게 봐주세요~', '좋게좋게 봐주세요~', 'male', 1995, 22255, 5, '/images/members/baku9.jpg', NULL, '전체 수락', '2015-08-03 09:36:51', NULL, '2015-08-04 11:45:50'),
+	(11, 'asdf', NULL, NULL, '여자', '47bce5c74f589f4867dbd57e9ca9f808', 'asdf@asdf.com', '진짜 여자일까요', '진짜 여자일까요', 'female', 1980, 5353, 1, '/images/members/baku4.png', NULL, '전체 수락', '2015-08-03 10:06:02', NULL, '2015-08-04 11:45:50'),
+	(12, 'qqq', NULL, NULL, '한방에주님곁으로', '47bce5c74f589f4867dbd57e9ca9f808', 'zxcvzxcv@ac.com', '까불지마', '까불지마', 'male', 1978, 212, 1, '/images/members/baku5.png', NULL, '전체 수락', '2015-08-03 10:07:01', NULL, '2015-08-04 11:45:50'),
+	(13, 'zzz', NULL, NULL, 'zzz', 'f3abb86bd34cf4d52698f14c0da1dc60', 'zzzzz@nate.com', 'zzz', 'zzz', 'male', 1990, 107, 1, '/images/members/basic.png', NULL, '전체 수락', '2015-08-03 12:12:13', NULL, '2015-08-04 11:45:50'),
+	(14, 'FB_1410284719301048', '1410284719301048', NULL, 'Nabang Bull', 'f3b4af28b0c3be566cb620386def4a54', 'won2jun@nate.com', ' ', '우파마ㅣㅇㄴㅍ\n\nㅊ파킽ㅊ픤ㅇㄹ마\nㄴ아릔ㅁ픠', 'male', 1990, 0, 1, '/images/members/basic.png', NULL, '전체 수락', '2015-08-04 06:48:40', '2015-08-04 14:28:02', '2015-08-04 11:45:50'),
+	(0, 'super', NULL, NULL, '관리자', '', ' ', ' ', NULL, 'male', 1990, 0, 1, '/images/members/basic.jpg', NULL, '전체 수락', NULL, NULL, NULL),
+	(16, 'jil3486', NULL, NULL, '아따형님들안녕하십니까잉~', 'b56adfedc68efd37fef92c1d5329af31', 'nujaves@naver.com', NULL, 'dd', 'male', 1990, 0, 1, '/images/members/basic.png', NULL, '전체 수락', '2015-10-09 04:00:03', NULL, NULL),
+	(17, 'guest', NULL, NULL, 'guest', '084e0343a0486ff05530df6c705c8bb4', 'guest@guest.com', 'guest', 'guest', 'male', 1990, 0, 1, '/images/members/basic.png', NULL, '전체 수락', '2016-01-28 15:43:43', NULL, NULL);
+/*!40000 ALTER TABLE `Members` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members_Follow 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members_Follow` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '친구신청 번호',
+  `Member1_Num` int(11) default NULL COMMENT '신청자 회원번호',
+  `Member2_Num` int(11) default NULL COMMENT '상대방 회원번호',
+  `Date` datetime default NULL COMMENT '신청일자',
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='친구맺기 테이블입니다.\r\n\r\n두 사람이 상호간에 친구신청을 하면 친구가 됩니다.';
+
+-- 테이블 데이터 bigyo.Members_Follow:0 rows 내보내기
+/*!40000 ALTER TABLE `Members_Follow` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Members_Follow` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members_Log_Name 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members_Log_Name` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '고유번호',
+  `Member_Num` int(11) NOT NULL COMMENT '회원번호',
+  `Before_Name` varchar(20) NOT NULL COMMENT '변경 전 별명',
+  `After_Name` varchar(20) NOT NULL COMMENT '변경 후 별명',
+  `Change_Date` datetime NOT NULL COMMENT '변경일자',
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='회원이 별명을 변경한 것을 기록하는 로그 테이블입니다.';
+
+-- 테이블 데이터 bigyo.Members_Log_Name:0 rows 내보내기
+/*!40000 ALTER TABLE `Members_Log_Name` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Members_Log_Name` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members_Log_Prison 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members_Log_Prison` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '징계번호',
+  `Member_Num` int(11) default NULL COMMENT '징계대상',
+  `Admin_Num` int(11) default NULL COMMENT '징계한 관리자',
+  `Suwi` varchar(50) default NULL COMMENT '처벌수위',
+  `Sayu` varchar(50) default NULL COMMENT '징계사유',
+  `Prison_Date` datetime default NULL COMMENT '징계일자',
+  `Break_Date` datetime default NULL COMMENT '해제일자',
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='회원을 징계한 기록을 남기는 로그 테이블입니다.';
+
+-- 테이블 데이터 bigyo.Members_Log_Prison:0 rows 내보내기
+/*!40000 ALTER TABLE `Members_Log_Prison` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Members_Log_Prison` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members_Memo 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members_Memo` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '고유번호',
+  `Member_Num` int(11) default NULL COMMENT '작성자',
+  `Member_Memo` int(11) default NULL COMMENT '메모대상',
+  `Memo` varchar(140) default NULL COMMENT '메모내용',
+  `Memo_date` datetime default NULL COMMENT '날짜',
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='각 회원에 대해서 회원별로 메모를 남길 수 있습니다.';
+
+-- 테이블 데이터 bigyo.Members_Memo:0 rows 내보내기
+/*!40000 ALTER TABLE `Members_Memo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Members_Memo` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members_Scrap 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members_Scrap` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '스크랩 번호',
+  `Member_Num` int(11) default NULL COMMENT '회원번호',
+  `Board_Name` varchar(50) default NULL COMMENT '게시판 이름',
+  `Column_Num` int(11) default NULL COMMENT '글번호',
+  `Memo` varchar(50) default NULL COMMENT '메모',
+  `Scrap_Date` datetime default NULL COMMENT '스크랩 날짜',
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 테이블 데이터 bigyo.Members_Scrap:0 rows 내보내기
+/*!40000 ALTER TABLE `Members_Scrap` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Members_Scrap` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Members_Singo 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Members_Singo` (
+  `num` int(11) NOT NULL auto_increment COMMENT '신고번호',
+  `Post_ID` int(11) NOT NULL default '0' COMMENT '신고글',
+  `Wongo` int(11) default NULL COMMENT '신고자',
+  `Pigo` int(11) default NULL COMMENT '신고대상',
+  `Sayu` varchar(100) default NULL COMMENT '신고사유',
+  `Memo` varchar(500) default NULL COMMENT '비고',
+  `Singo_Date` datetime default NULL COMMENT '신고일자',
+  `Judgement` int(1) NOT NULL default '0' COMMENT '처리여부',
+  PRIMARY KEY  (`num`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='회원을 신고한 정보를 담는 테이블입니다.';
+
+-- 테이블 데이터 bigyo.Members_Singo:3 rows 내보내기
+/*!40000 ALTER TABLE `Members_Singo` DISABLE KEYS */;
+INSERT INTO `Members_Singo` (`num`, `Post_ID`, `Wongo`, `Pigo`, `Sayu`, `Memo`, `Singo_Date`, `Judgement`) VALUES
+	(1, 1, 10, 2, '분란을 일으키기 위한 게시물', '개그자체가 더러움', '2015-08-03 10:50:21', 7),
+	(2, 19, 1, 1, '게시판 용도 부적절', 'sdafasdf', '2015-08-03 20:11:20', 1),
+	(3, 0, 10, 10, '특정유저비난 및 욕설', 'dd', '2015-08-04 14:31:07', 60);
+/*!40000 ALTER TABLE `Members_Singo` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Message 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Message` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '쪽지번호',
+  `Send_Member` int(11) default NULL COMMENT '보낸사람',
+  `Receive_Member` int(11) default NULL COMMENT '받는사람',
+  `Send_Date` datetime default NULL COMMENT '보낸시간',
+  `Read_Date` datetime default NULL COMMENT '읽은시간',
+  `Delete_Check` int(1) default NULL COMMENT '삭제체크',
+  `MessageContent` varchar(1000) default NULL,
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='쪽지\r\n\r\n삭제체크\r\n보낸 사람이 삭제 =  1이 추가됨\r\n받은 사람이 삭제  = 2가 추가됨';
+
+-- 테이블 데이터 bigyo.Message:32 rows 내보내기
+/*!40000 ALTER TABLE `Message` DISABLE KEYS */;
+INSERT INTO `Message` (`Num`, `Send_Member`, `Receive_Member`, `Send_Date`, `Read_Date`, `Delete_Check`, `MessageContent`) VALUES
+	(1, 2, 2, '2015-08-03 09:34:34', NULL, NULL, '사랑해\n'),
+	(29, 10, 10, '2015-08-04 10:23:29', '2015-08-04 13:12:01', NULL, 'sdfasdfasdfasdf'),
+	(27, 10, 10, '2015-08-04 09:06:59', '2015-08-04 13:11:54', NULL, '쪽지 받아랏'),
+	(28, 10, 10, '2015-08-04 09:38:29', '2015-08-04 13:12:03', NULL, 'asdfasdf'),
+	(26, 0, 10, '2015-08-03 15:26:11', '2015-08-04 13:11:46', NULL, '20일 간의 유배형을 내립니다.'),
+	(25, 13, 9, '2015-08-03 14:13:55', NULL, NULL, '게시판 용도 부적절'),
+	(24, 13, 9, '2015-08-03 14:09:25', NULL, NULL, '거짓 정보'),
+	(23, 0, 1, '2015-08-03 14:06:46', '2015-08-06 05:56:53', NULL, '귀하가 본 사이트의 규정에 어긋난 행동을 하였으므로, 7일 간의 유배형을 내립니다.'),
+	(22, 13, 9, '2015-08-03 13:40:57', NULL, NULL, '기타'),
+	(21, 1, 9, '2015-08-03 13:37:11', '2015-08-10 02:42:24', NULL, '으하하하하하'),
+	(20, 13, 9, '2015-08-03 12:41:31', NULL, NULL, '거짓 정보'),
+	(30, 0, 0, '2015-08-04 10:46:14', NULL, NULL, '귀하는 본 사이트의 규정을 위반하였으나, 사안이 경미하고 고의성이 없다고 판단되어 처벌하지 않았습니다. 앞으로 주의하여 주십시오.'),
+	(31, 10, 1, '2015-08-04 10:56:29', '2015-08-04 13:12:08', NULL, 'asdfasdfd'),
+	(32, 10, 10, '2015-08-04 11:00:11', '2015-08-04 13:11:56', NULL, 'ㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ'),
+	(33, 10, 10, '2015-08-04 11:03:40', '2015-08-04 11:03:54', NULL, 'asdfasdf'),
+	(34, 10, 10, '2015-08-04 11:03:50', '2015-08-04 13:12:10', NULL, 'asdfasdf한글'),
+	(35, 0, 1, '2015-08-04 11:28:40', '2015-08-04 13:45:42', NULL, '귀하는 본 사이트의 규정을 위반하였으므로, 7일 간의 유배형을 내립니다.'),
+	(36, 0, 1, '2015-08-04 11:28:49', '2015-08-04 13:18:49', NULL, '귀하는 본 사이트의 규정을 위반하였으나, 사안이 경미하고 고의성이 없다고 판단되어 처벌하지 않았습니다. 앞으로 주의하여 주십시오.'),
+	(37, 0, 10, '2015-08-04 11:42:33', '2015-08-04 13:12:21', NULL, '귀하는 본 사이트의 규정을 위반하였으므로, 7일 간의 유배형을 내립니다.'),
+	(38, 0, 2, '2015-08-04 11:42:39', '2015-08-04 14:45:46', NULL, '귀하는 본 사이트의 규정을 위반하였으나, 사안이 경미하고 고의성이 없다고 판단되어 처벌하지 않았습니다. \r\n\r\n앞으로 주의하여 주십시오.'),
+	(39, 0, 10, '2015-08-04 11:44:58', '2015-08-04 11:57:24', NULL, '귀하는 본 사이트의 규정을 위반하였으므로, 20일 간의 유배형을 내립니다.'),
+	(40, 13, 10, '2015-08-04 14:06:05', NULL, NULL, '야필패란 이길수 없는것입니다.'),
+	(41, 13, 1, '2015-08-04 14:06:17', '2015-08-06 05:19:50', NULL, '저랑 같이 보러 가실래요?'),
+	(42, 13, 1, '2015-08-04 14:06:26', '2015-08-06 05:19:46', NULL, '포인트좀 주세요!'),
+	(43, 13, 1, '2015-08-04 14:06:45', '2015-08-04 14:29:28', NULL, '내생에 최초의 우주영화 였는데..'),
+	(44, 13, 10, '2015-08-04 14:13:57', NULL, NULL, '오늘가나연\n'),
+	(45, 1, 13, '2015-08-04 14:29:36', NULL, NULL, 'zz'),
+	(46, 1, 1, '2015-08-04 14:29:47', '2015-08-06 05:21:04', NULL, 'zz'),
+	(47, 1, 13, '2015-08-04 14:34:39', NULL, NULL, 'ㄹㄹ'),
+	(48, 0, 10, '2015-08-04 14:36:01', '2015-08-06 05:21:54', NULL, '귀하는 본 사이트의 규정을 위반하였으므로, 20일 간의 유배형을 내립니다.'),
+	(49, 0, 10, '2015-08-06 06:04:45', NULL, NULL, '귀하는 본 사이트의 규정을 위반하였으므로, 7일 간의 유배형을 내립니다.'),
+	(50, 0, 10, '2015-08-06 06:04:57', NULL, NULL, '귀하는 본 사이트의 규정을 위반하였으므로, 60일 간의 유배형을 내립니다.');
+/*!40000 ALTER TABLE `Message` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Message_Save 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Message_Save` (
+  `Num` int(11) NOT NULL auto_increment COMMENT '쪽지번호',
+  `Send_Member` int(11) default NULL COMMENT '보낸사람',
+  `Receive_Member` int(11) default NULL COMMENT '받는사람',
+  `Send_Date` datetime default NULL COMMENT '보낸시간',
+  `Read_Date` datetime default NULL COMMENT '읽은시간',
+  `Save_Check` int(1) default NULL COMMENT '보관체크',
+  PRIMARY KEY  (`Num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='쪽지\r\n\r\n보관체크\r\n보낸 사람이 보관 =  1이 추가됨\r\n받은 사람이 보관  = 2가 추가됨';
+
+-- 테이블 데이터 bigyo.Message_Save:0 rows 내보내기
+/*!40000 ALTER TABLE `Message_Save` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Message_Save` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Sample_Board 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Sample_Board` (
+  `Post_ID` int(11) NOT NULL auto_increment COMMENT '글번호',
+  `Group_ID` int(11) default NULL COMMENT '글그룹',
+  `Member_Num` int(11) default NULL COMMENT '회원번호',
+  `Member_Name` varchar(20) default NULL COMMENT '별명',
+  `Category` varchar(20) default NULL COMMENT '카테고리',
+  `Subject` varchar(50) default NULL COMMENT '제목',
+  `Content` varchar(5000) default NULL COMMENT '내용',
+  `Count` int(11) NOT NULL default '0' COMMENT '카운터',
+  `IP` varchar(50) default NULL COMMENT 'IP',
+  `Comment_Group` int(11) NOT NULL default '0' COMMENT '댓글그룹',
+  `ComCom_Code` int(11) default '0' COMMENT '대댓글 코드',
+  `Comment_Count` int(11) default '0' COMMENT '댓글 갯수',
+  `Like` int(11) NOT NULL default '0' COMMENT '좋아요 카운트',
+  `Dislike` int(11) NOT NULL default '0' COMMENT '싫어요 카운트',
+  `Attachment` int(11) NOT NULL default '0' COMMENT '첨부파일',
+  `Modify_Count` int(11) NOT NULL default '0' COMMENT '수정횟수',
+  `Select` varchar(50) NOT NULL default '0' COMMENT '채택답변',
+  `Post_Date` datetime default NULL COMMENT '작성일자',
+  `Delete_Date` datetime default NULL COMMENT '삭제일자',
+  `Read_Date` datetime default NULL COMMENT '마지막 읽은 시간',
+  PRIMARY KEY  (`Post_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='댓글번호 0은 본문\r\n첫댓글은 1, 두번째 댓글은 2...\r\n1의 대댓글은 1 + 대댓코드 A';
+
+-- 테이블 데이터 bigyo.Sample_Board:0 rows 내보내기
+/*!40000 ALTER TABLE `Sample_Board` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Sample_Board` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Sample_Board_Attachment 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Sample_Board_Attachment` (
+  `Attach_ID` int(11) NOT NULL auto_increment COMMENT '첨부번호',
+  `Post_ID` int(11) default NULL COMMENT '글번호',
+  `Member_Num` int(11) default NULL COMMENT '회원번호',
+  `File_Name` varchar(1000) default NULL COMMENT '퍄앨이름',
+  `Download_Count` int(11) default NULL COMMENT '다운받은 횟수',
+  `Upload_Date` datetime default NULL COMMENT '업로드한 날짜',
+  `Img_Width` int(11) default NULL COMMENT '이미지 가로길이',
+  `Img_Height` int(11) default NULL COMMENT '이미지 세로길이',
+  PRIMARY KEY  (`Attach_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='첨부파일';
+
+-- 테이블 데이터 bigyo.Sample_Board_Attachment:0 rows 내보내기
+/*!40000 ALTER TABLE `Sample_Board_Attachment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Sample_Board_Attachment` ENABLE KEYS */;
+
+
+-- 테이블 bigyo.Sample_Board_Log 구조 내보내기
+CREATE TABLE IF NOT EXISTS `Sample_Board_Log` (
+  `Log_ID` int(11) NOT NULL auto_increment COMMENT '고유번호',
+  `Post_ID` int(11) default NULL COMMENT '글번호',
+  `Before_Subject` varchar(50) default NULL COMMENT '제목',
+  `Before_Content` varchar(5000) default NULL COMMENT '내용',
+  `Modify_Date` datetime default NULL COMMENT '수정일자',
+  PRIMARY KEY  (`Log_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='게시물 수정시 로그';
+
+-- 테이블 데이터 bigyo.Sample_Board_Log:0 rows 내보내기
+/*!40000 ALTER TABLE `Sample_Board_Log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Sample_Board_Log` ENABLE KEYS */;
+
+
+-- 프로시저 bigyo.sp_board_attach_delete 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_attach_delete`(
+		IN pi_attach_id INT,
+		IN pi_post_id INT)
+BEGIN
+	update Board_Forum_Attachment set delete_date = now() where attach_id = pi_attach_id;
+	update Board_Forum set attachment = attachment -1 where post_id = pi_post_id;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_comment 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_comment`(
+		IN pi_part_id INT,
+		IN pi_member_num INT,
+		IN pi_member_name VARCHAR(30),
+		IN pi_content TEXT,
+		IN pi_ip VARCHAR(50),
+		IN pi_group_id INT,
+		IN pi_comment_seq INT,
+		IN pi_parent_post_id INT,
+		IN pi_parent_comment_id INT)
+BEGIN
+	DECLARE v_comment_point INT;
+	select comment_point into v_comment_point from Manage_Board where board_id = pi_part_id;
+	update Members set point = point + v_comment_point where num = pi_member_num;
+	update Board_Forum set comment_count = comment_count+1 where post_id = pi_parent_post_id;
+
+	IF pi_parent_comment_id = 0 OR pi_parent_comment_id is null THEN
+		insert into
+			Board_Forum(part_id, member_num, member_name, content, ip, post_date, group_id, comment_seq)
+			select
+				pi_part_id, pi_member_num, pi_member_name, pi_content, pi_ip, now(), pi_group_id,
+				max(comment_seq)+1 from Board_Forum where group_id = pi_group_id;
+
+	ELSEIF pi_comment_seq > 0 THEN
+		update Board_Forum set comment_count = comment_count+1 where post_id = pi_parent_comment_id;
+		insert into
+			Board_Forum(part_id,member_num, member_name, content, ip, post_date, group_id, comment_seq, comm_reply_seq)
+			select
+				pi_part_id, pi_member_num, pi_member_name, pi_content, pi_ip, now(), pi_group_id,
+				pi_comment_seq, max(comm_reply_seq)+1 from Board_Forum
+				where group_id = pi_group_id and comment_seq = pi_comment_seq;
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_comment_delete 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_comment_delete`(
+		IN pi_post_id INT,
+		IN pi_parent_post_id INT,
+		IN pi_parent_comment_id INT,
+		IN pi_member_num INT)
+BEGIN
+	DECLARE v_comment_point INT;
+	DECLARE v_part_id INT;
+	select part_id into v_part_id from Board_Forum where post_id = pi_parent_post_id;
+	select comment_point into v_comment_point from Manage_Board where board_id = v_part_id;
+	update Members set point = point - v_comment_point where num = pi_member_num;
+	update Board_Forum set comment_count = comment_count-1 where post_id = pi_parent_post_id;
+
+	IF pi_parent_comment_id = 0 OR pi_parent_comment_id is null THEN
+		update Board_Forum set delete_date = now() where post_id = pi_post_id;
+
+	ELSEIF pi_comment_seq > 0 THEN
+		update Board_Forum set comment_count = comment_count-1 where post_id = pi_parent_comment_id;
+		update Board_Forum set delete_date = now() where post_id = pi_post_id;
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_delete 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_delete`(
+		IN pi_post_id INT,
+		IN pi_member_num INT)
+BEGIN
+	DECLARE v_post_point INT;
+	DECLARE v_part_id INT;
+	select part_id into v_part_id from Board_Forum where post_id = pi_post_id;
+	select post_point into v_post_point from Manage_Board where board_id = v_part_id;
+	update Members set point = point - v_post_point where num = pi_member_num;
+	update Board_Forum set delete_date = now() where post_id = pi_post_id;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_list 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_list`(
+		IN pi_part_id INT,
+		IN pi_page_id INT,
+		IN pi_category VARCHAR(20),
+		IN pi_select VARCHAR(20),
+		IN pi_search VARCHAR(100))
+BEGIN
+	DECLARE v_limit INT;
+	select page_per_record into v_limit from Manage_Board where board_id = pi_part_id;
+
+	SET @part_id = pi_part_id;
+	SET @limit_id = v_limit;
+	SET @category = pi_category;
+	SET @select = pi_select;
+	SET @search = pi_search;
+	SET @offset_id = pi_page_id*v_limit;
+	
+	IF pi_category is null AND pi_search is null THEN
+		SET @query = "select *, 
+			if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+				DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time
+			from Board_Forum where part_id =? and subject is not null and delete_date is null
+			order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+			limit ? offset ?";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id, @limit_id, @offset_id;
+
+	ELSEIF pi_category is not null AND pi_search is null THEN
+		SET @query = "select *, 
+			if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+				DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+			Board_Forum where part_id =? and category =? 
+			and subject is not null and delete_date is null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+			limit ? offset ?";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id, @category, @limit_id, @offset_id;
+
+	ELSEIF pi_search is not null THEN
+		IF pi_select = 'subject' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+					DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and subject like concat('%',?,'%')
+				and subject is not null and delete_date is null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'content' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+					DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and content like concat('%',?,'%')
+				and subject is not null and delete_date is null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'comment' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+					DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id=? content like concat('%',?,'%')
+					and comment_seq > 0 and delete_date is null)
+				order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'subject_content' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+					DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and
+				(subject like concat('%',?,'%') or content like concat('%',?,'%'))
+				and subject is not null and delete_date is null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'member_name' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+					DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and member_name = ?
+				and subject is not null and delete_date is null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'member_name_comment' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(post_date, '%Y-%m-%d'), 
+					DATE_FORMAT(post_date, '%H시 %i분'), DATE_FORMAT(post_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id =? and member_name = ?
+					and comment_seq > 0 and delete_date is null)
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search, @limit_id, @offset_id;
+		END IF;
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_list_del 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_list_del`(
+		IN pi_part_id INT,
+		IN pi_page_id INT,
+		IN pi_category VARCHAR(20),
+		IN pi_select VARCHAR(20),
+		IN pi_search VARCHAR(100))
+BEGIN
+	DECLARE v_limit INT;
+	select page_per_record into v_limit from Manage_Board where board_id = pi_part_id;
+
+	SET @part_id = pi_part_id;
+	SET @limit_id = v_limit;
+	SET @category = pi_category;
+	SET @select = pi_select;
+	SET @search = pi_search;
+	SET @offset_id = pi_page_id*v_limit;
+	
+	IF pi_category is null AND pi_search is null THEN
+		SET @query = "select *, 
+			if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+				DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time
+			from Board_Forum where part_id =? and subject is not null and delete_date is not null
+			order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+			limit ? offset ?";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id, @limit_id, @offset_id;
+
+	ELSEIF pi_category is not null AND pi_search is null THEN
+		SET @query = "select *, 
+			if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+				DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+			Board_Forum where part_id =? and category =? 
+			and subject is not null and delete_date is not null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+			limit ? offset ?";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id, @category, @limit_id, @offset_id;
+
+	ELSEIF pi_search is not null THEN
+		IF pi_select = 'subject' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+					DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and subject like concat('%',?,'%')
+				and subject is not null and delete_date is not null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'content' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+					DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and content like concat('%',?,'%')
+				and subject is not null and delete_date is not null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'comment' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+					DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id=? content like concat('%',?,'%')
+					and comment_seq > 0 and delete_date is not null)
+				order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'subject_content' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+					DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and
+				(subject like concat('%',?,'%') or content like concat('%',?,'%'))
+				and subject is not null and delete_date is not null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'member_name' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+					DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and member_name = ?
+				and subject is not null and delete_date is not null order by notice desc, reply_group desc, reply_seq asc, group_id desc, post_id desc
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @limit_id, @offset_id;
+
+		ELSEIF pi_select = 'member_name_comment' THEN
+			SET @query = "select *, 
+				if(DATE_FORMAT(now(), '%Y-%m-%d')=DATE_FORMAT(delete_date, '%Y-%m-%d'), 
+					DATE_FORMAT(delete_date, '%H시 %i분'), DATE_FORMAT(delete_date, '%y-%m-%d')) as post_time from
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id =? and member_name = ?
+					and comment_seq > 0 and delete_date is not null)
+				limit ? offset ?";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search, @limit_id, @offset_id;
+		END IF;
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_modify_comment 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_modify_comment`(
+		IN pi_post_id INT,
+		IN pi_member_name VARCHAR(50),
+		IN pi_content TEXT,
+		IN pi_ip VARCHAR(50))
+BEGIN
+	DECLARE v_part_id INT;
+	DECLARE v_cont TEXT;
+
+	select content into v_cont from Board_Forum where post_id = pi_post_id;
+	select part_id into v_part_id from Board_Forum where post_id = pi_post_id;
+
+	update Board_Forum set
+		member_name = pi_member_name, content = pi_content, ip = pi_ip, modify_count = modify_count+1
+		where post_id = pi_post_id;
+
+	insert into Board_Forum_Log(part_id, post_id, before_content, modify_date)
+		select v_part_id, pi_post_id, v_cont, now() from Board_Forum where post_id = pi_post_id;
+
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_post 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_post`(
+		IN pi_post_id INT,
+		IN pi_part_id INT,
+		IN pi_member_num INT,
+		IN pi_member_name VARCHAR(30),
+		IN pi_subject VARCHAR(50),
+		IN pi_content TEXT,
+		IN pi_ip VARCHAR(50),
+		IN pi_category VARCHAR(20),
+		IN pi_attachment INT,
+		IN pi_parent_post_id INT,
+		IN pi_method VARCHAR(50),
+		IN pi_contact VARCHAR(50),
+		IN pi_price VARCHAR(50),
+		IN pi_reply_group INT,
+		IN pi_reply_seq INT,
+		IN pi_selected VARCHAR(50))
+BEGIN
+	DECLARE v_post_point INT;
+	DECLARE v_bsub VARCHAR(50);
+	DECLARE v_cont TEXT;
+
+	IF pi_post_id > 0 THEN
+		select subject into v_bsub from Board_Forum where post_id = pi_post_id;
+		select content into v_cont from Board_Forum where post_id = pi_post_id;
+
+		update Board_Forum set
+			member_name = pi_member_name, subject = pi_subject, attachment = attachment + pi_attachment,
+			content = pi_content, ip = pi_ip, category = pi_category, modify_count = modify_count+1,
+			selected = pi_selected, notice = if(pi_category = '공지', 1, 0) where post_id = pi_post_id;
+
+		insert into Board_Forum_Log(part_id, post_id, before_subject, before_content, modify_date)
+			select 1, pi_post_id, v_bsub, v_cont, now() from Board_Forum where post_id = pi_post_id;
+
+		update Board_Forum set modify_count = modify_count+1 where post_id = pi_post_id;
+
+		select post_id from Board_Forum where post_id = pi_post_id;
+
+	ELSEIF pi_post_id = 0 OR pi_post_id is null THEN
+		select post_point into v_post_point from Manage_Board where board_id = pi_part_id;
+		update Members set point = point + v_post_point where num = pi_member_num;
+
+		IF pi_parent_post_id is null OR pi_parent_post_id = 0 THEN
+			insert into
+				Board_Forum(part_id, member_num, member_name, subject, content, ip, category,
+					attachment, method, contact, price, notice, selected,
+					post_date, read_date, group_id, reply_group)
+				select
+					pi_part_id, pi_member_num, pi_member_name, pi_subject, pi_content, pi_ip, pi_category,
+					pi_attachment, pi_method, pi_contact, pi_price, if(pi_category = '공지', 1, 0), pi_selected,
+					now(), now(), ifnull(max(group_id)+1, 1), ifnull(max(reply_group)+1, 1) from Board_Forum;
+		ELSEIF pi_parent_post_id > 0 THEN
+			insert into 
+				Board_Forum(part_id, member_num, member_name, subject, content, ip, category,
+					attachment, method, contact, price, notice, selected,
+					post_date, read_date, group_id, reply_group, reply_seq, reply_level)
+				select
+					pi_part_id, pi_member_num, pi_member_name, pi_subject, pi_content, pi_ip, pi_category,
+					pi_attachment, pi_method, pi_contact, pi_price, if(pi_category = '공지', 1, 0), pi_selected,
+					now(), now(), ifnull(max(group_id)+1, 1),
+					pi_reply_group, reply_seq+1, reply_level+1 from Board_Forum
+					where post_id = pi_parent_post_id;
+		END IF;
+		select LAST_INSERT_ID();
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_read 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_read`(
+		IN pi_member_num INT,
+		IN pi_post_id INT)
+BEGIN
+	DECLARE v_post_member INT;
+	DECLARE v_part_id INT;
+	DECLARE v_read_point INT;
+	select member_num into v_post_member from Board_Forum where post_id = pi_post_id;
+	select part_id into v_part_id from Board_Forum where post_id = pi_post_id;
+
+	IF pi_member_num = v_post_member THEN
+		update Board_Forum set read_date = now() where post_id = pi_post_id;
+		
+	ELSEIF pi_member_num > 0 THEN
+		select read_point into v_read_point from Manage_Board where board_id = v_part_id;
+		update Members set point = point + v_read_point where num = pi_member_num;
+	END IF;
+
+	update Board_Forum set count = count +1 where post_id = pi_post_id;
+
+	select *, Members.picture as member_pic, Members.signature as signature,
+		DATE_FORMAT(post_date, '%Y년 %m월 %d일 %H시 %i분') as post_fulltime
+		from Board_Forum inner join Members
+		on Board_Forum.member_num = Members.num
+		where post_id = pi_post_id and delete_date is null;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_total 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_total`(
+		IN pi_part_id INT,
+		IN pi_category VARCHAR(20),
+		IN pi_select VARCHAR(20),
+		IN pi_search VARCHAR(100))
+BEGIN
+
+	SET @part_id = pi_part_id;
+	SET @category = pi_category;
+	SET @select = pi_select;
+	SET @search = pi_search;
+	
+	IF pi_category is null AND pi_search is null THEN
+		SET @query = "select count(*) as total_record from 
+			Board_Forum where part_id = ? and subject is not null and delete_date is null";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id;
+
+	ELSEIF pi_category is not null AND pi_search is null THEN
+		SET @query = "select count(*) as total_record from 
+			Board_Forum where part_id =? and category =? 
+			and subject is not null and delete_date is null";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id, @category;
+
+	ELSEIF pi_search is not null THEN
+		IF pi_select = 'subject' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and subject like concat('%',?,'%')
+				and subject is not null and delete_date is null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search;
+
+		ELSEIF pi_select = 'content' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and content like concat('%',?,'%')
+				and subject is not null and delete_date is null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search;
+
+		ELSEIF pi_select = 'comment' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id=? content like concat('%',?,'%')
+					and comment_seq > 0 and delete_date is null)";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search;
+
+		ELSEIF pi_select = 'subject_content' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and
+				(subject like concat('%',?,'%') or content like concat('%',?,'%'))
+				and subject is not null and delete_date is null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @search;
+
+		ELSEIF pi_select = 'member_name' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and member_name = ?
+				and subject is not null and delete_date is null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search;
+
+		ELSEIF pi_select = 'member_name_comment' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id =? and member_name = ?
+					and comment_seq > 0 and delete_date is null)";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search;
+		END IF;
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_board_total_del 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_board_total_del`(
+		IN pi_part_id INT,
+		IN pi_category VARCHAR(20),
+		IN pi_select VARCHAR(20),
+		IN pi_search VARCHAR(100))
+BEGIN
+
+	SET @part_id = pi_part_id;
+	SET @category = pi_category;
+	SET @select = pi_select;
+	SET @search = pi_search;
+	
+	IF pi_category is null AND pi_search is null THEN
+		SET @query = "select count(*) as total_record from 
+			Board_Forum where part_id = ? and subject is not null and delete_date is not null";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id;
+
+	ELSEIF pi_category is not null AND pi_search is null THEN
+		SET @query = "select count(*) as total_record from 
+			Board_Forum where part_id =? and category =? 
+			and subject is not null and delete_date is not null";
+		PREPARE stmt FROM @query;
+		EXECUTE stmt USING @part_id, @category;
+
+	ELSEIF pi_search is not null THEN
+		IF pi_select = 'subject' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and subject like concat('%',?,'%')
+				and subject is not null and delete_date is not null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search;
+
+		ELSEIF pi_select = 'content' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and content like concat('%',?,'%')
+				and subject is not null and delete_date is not null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search;
+
+		ELSEIF pi_select = 'comment' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id=? content like concat('%',?,'%')
+					and comment_seq > 0 and delete_date is not null)";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search;
+
+		ELSEIF pi_select = 'subject_content' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and
+				(subject like concat('%',?,'%') or content like concat('%',?,'%'))
+				and subject is not null and delete_date is not null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search, @search;
+
+		ELSEIF pi_select = 'member_name' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and member_name = ?
+				and subject is not null and delete_date is not null";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @search;
+
+		ELSEIF pi_select = 'member_name_comment' THEN
+			SET @query = "select count(*) as total_record from 
+				Board_Forum where part_id =? and subject is not null and group_id in
+				(select group_id from
+					Board_Forum where part_id =? and member_name = ?
+					and comment_seq > 0 and delete_date is not null)";
+			PREPARE stmt FROM @query;
+			EXECUTE stmt USING @part_id, @part_id, @search;
+		END IF;
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_likes_rating 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_likes_rating`(
+		IN pi_member_num INT,
+		IN pi_post_id INT,
+		IN pi_like INT)
+BEGIN
+	DECLARE v_point INT;
+	DECLARE v_part_id INT;
+	DECLARE v_like_count INT;
+	DECLARE v_member_level INT;
+	DECLARE v_birth INT;
+	DECLARE v_gender INT;
+
+	select part_id into v_part_id from Board_Forum where post_id = pi_post_id;
+	select level into v_member_level from Members where num = pi_member_num;
+	select birth into v_birth from Members where num = pi_member_num;
+	select gender into v_gender from Members where num = pi_member_num;
+	select count(like_list) into v_like_count from Like_Avg where post_id = pi_post_id and like_list like concat('%#', pi_member_num, '$%');
+
+	IF v_like_count = 0 THEN
+		select like_point into v_point from Manage_Board where board_id = v_part_id;
+		update Board_Forum set likes = likes + pi_like, dislike = dislike+1 where post_id = pi_post_id;
+		update Members set point = point + v_point where num = pi_member_num;
+		update Like_Avg set likes = likes + pi_like, dislike = dislike+1, like_list = concat(ifnull(like_list, 0), '#', pi_member_num, '$') where post_id = pi_post_id;
+		update Like_Avg set age_like = age_like + (DATE_FORMAT(now(), '%Y')-v_birth) where post_id = pi_post_id;
+			
+		IF v_gender = 'male' THEN
+			update Like_Avg set male_like = male_like+pi_like, male_dislike = male_dislike+1 where post_id = pi_post_id;
+		ELSEIF v_gender = 'female' THEN
+			update Like_Avg set female_like = female_like+pi_like, female_like = female_dislike+1 where post_id = pi_post_id;
+		end if;
+	end if;
+	select ROUND(likes/dislike, 1) as likes from Board_Forum where post_id = pi_post_id;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_likes_value 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_likes_value`(
+		IN pi_member_num INT,
+		IN pi_post_id INT,
+		IN pi_like VARCHAR(20))
+BEGIN
+	DECLARE v_point INT;
+	DECLARE v_part_id INT;
+	DECLARE v_like_count INT;
+	DECLARE v_member_level INT;
+	DECLARE v_birth INT;
+	DECLARE v_gender INT;
+
+	select part_id into v_part_id from Board_Forum where post_id = pi_post_id;
+	select level into v_member_level from Members where num = pi_member_num;
+	select birth into v_birth from Members where num = pi_member_num;
+	select gender into v_gender from Members where num = pi_member_num;
+	select count(like_list) into v_like_count from Like_Avg where post_id = pi_post_id and like_list like concat('%#', pi_member_num, '$%');
+
+	IF v_like_count = 0 THEN
+		IF pi_like = 'like' THEN
+			select like_point into v_point from Manage_Board where board_id = v_part_id;
+			update Board_Forum set likes = likes+1 where post_id = pi_post_id;
+			update Members set point = point + v_point where num = pi_member_num;
+			update Like_Avg set likes = likes+1, like_list = concat(ifnull(like_list, 0), '#', pi_member_num, '$') where post_id = pi_post_id;
+			update Like_Avg set age_like = age_like + (DATE_FORMAT(now(), '%Y')-v_birth) where post_id = pi_post_id;
+			
+			IF v_gender = 'male' THEN
+				update Like_Avg set male_like = male_like+1 where post_id = pi_post_id;
+			ELSEIF v_gender = 'female' THEN
+				update Like_Avg set female_like = female_like+1 where post_id = pi_post_id;
+			END IF;
+
+		ELSEIF pi_like = 'dislike' THEN
+			select like_point into v_point from Manage_Board where board_id = v_part_id;
+			update Board_Forum set dislike = dislike+1 where post_id = pi_post_id;
+			update Members set point = point + v_point where num = pi_member_num;
+			update Like_Avg set dislike = dislike+1, like_list = concat(ifnull(like_list, 0), '#', pi_member_num, '$') where post_id = pi_post_id;
+			update Like_Avg set age_dislike = age_dislike + (DATE_FORMAT(now(), '%Y')-v_birth) where post_id = pi_post_id;
+			
+			IF v_gender = 'male' THEN
+				update Like_Avg set male_dislike = male_dislike+1 where post_id = pi_post_id;
+			ELSEIF v_gender = 'female' THEN
+				update Like_Avg set female_dislike = female_dislike+1 where post_id = pi_post_id;
+			END IF;
+		end if;
+	end if;
+	select concat(likes, '#', dislike) as likes from Board_Forum where post_id = pi_post_id;
+END//
+DELIMITER ;
+
+
+-- 프로시저 bigyo.sp_make_jot 구조 내보내기
+DELIMITER //
+CREATE DEFINER=`bigyo`@`%` PROCEDURE `sp_make_jot`(
+		IN pi_pigo INT,
+		IN pi_judgement INT,
+		IN pi_num INT)
+BEGIN
+	DECLARE v_date DATETIME;
+
+	select prison_break into v_date from Members where num = pi_pigo;
+	update Members_Singo set judgement = pi_judgement where num = pi_num;
+
+	IF pi_judgement = 2 THEN
+		insert into Message(send_member, receive_member, send_date, messagecontent)
+		values(0, pi_num, now(), '귀하는 본 사이트의 규정을 위반하였으나, 사안이 경미하고 고의성이 없다고 판단되어 처벌하지 않았습니다. 
+
+앞으로 주의하여 주십시오.');
+
+	ELSEIF pi_judgement = 99 THEN
+		IF v_date > now() THEN
+			update Members set prison_break = date_add(prison_break, interval +99 year) where num = pi_pigo;
+		ELSE
+			update Members set prison_break = date_add(now(), interval +99 year) where num = pi_pigo;
+
+		END IF;
+
+		insert into Message(send_member, receive_member, send_date, messagecontent)
+		values(0, pi_pigo, now(), concat('귀하는 본 사이트의 규정을 심각하게 위반하였으므로, 영구유배 조치를 내립니다.'));
+
+	ELSEIF pi_judgement != 1 THEN
+		IF v_date > now() THEN
+			update Members set prison_break = date_add(prison_break, interval +pi_judgement day) where num = pi_pigo;
+		ELSE
+			update Members set prison_break = date_add(now(), interval +pi_judgement day) where num = pi_pigo;
+
+		END IF;
+
+		insert into Message(send_member, receive_member, send_date, messagecontent)
+		values(0, pi_pigo, now(), concat('귀하는 본 사이트의 규정을 위반하였으므로, ', pi_judgement,'일 간의 유배형을 내립니다.'));
+
+	END IF;
+END//
+DELIMITER ;
+
+
+-- 뷰 bigyo.view_message 구조 내보내기
+-- VIEW 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+CREATE TABLE `view_message` (
+	`Num` INT(11) NOT NULL COMMENT '쪽지번호',
+	`Send_Member` INT(11) NULL COMMENT '보낸사람',
+	`Receive_Member` INT(11) NULL COMMENT '받는사람',
+	`Send_Date` DATETIME NULL COMMENT '보낸시간',
+	`Read_Date` DATETIME NULL COMMENT '읽은시간',
+	`Delete_Check` INT(1) NULL COMMENT '삭제체크',
+	`MessageContent` VARCHAR(1000) NULL COLLATE 'utf8_general_ci',
+	`send_member_name` VARCHAR(50) NOT NULL COMMENT '별명' COLLATE 'utf8_general_ci',
+	`receive_member_name` VARCHAR(50) NOT NULL COMMENT '별명' COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+
+-- 뷰 bigyo.view_singo_chuli 구조 내보내기
+-- VIEW 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+CREATE TABLE `view_singo_chuli` (
+	`num` INT(11) NOT NULL COMMENT '신고번호',
+	`Post_ID` INT(11) NOT NULL COMMENT '신고글',
+	`Wongo` INT(11) NULL COMMENT '신고자',
+	`Pigo` INT(11) NULL COMMENT '신고대상',
+	`Sayu` VARCHAR(100) NULL COMMENT '신고사유' COLLATE 'utf8_general_ci',
+	`Memo` VARCHAR(500) NULL COMMENT '비고' COLLATE 'utf8_general_ci',
+	`Singo_Date` DATETIME NULL COMMENT '신고일자',
+	`Judgement` INT(1) NOT NULL COMMENT '처리여부',
+	`wongo_name` VARCHAR(50) NOT NULL COMMENT '별명' COLLATE 'utf8_general_ci',
+	`pigo_name` VARCHAR(50) NOT NULL COMMENT '별명' COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+
+-- 뷰 bigyo.view_singo_list 구조 내보내기
+-- VIEW 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+CREATE TABLE `view_singo_list` (
+	`num` INT(11) NOT NULL COMMENT '신고번호',
+	`Post_ID` INT(11) NOT NULL COMMENT '신고글',
+	`Wongo` INT(11) NULL COMMENT '신고자',
+	`Pigo` INT(11) NULL COMMENT '신고대상',
+	`Sayu` VARCHAR(100) NULL COMMENT '신고사유' COLLATE 'utf8_general_ci',
+	`Memo` VARCHAR(500) NULL COMMENT '비고' COLLATE 'utf8_general_ci',
+	`Singo_Date` DATETIME NULL COMMENT '신고일자',
+	`Judgement` INT(1) NOT NULL COMMENT '처리여부',
+	`wongo_name` VARCHAR(50) NOT NULL COMMENT '별명' COLLATE 'utf8_general_ci',
+	`pigo_name` VARCHAR(50) NOT NULL COMMENT '별명' COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+
+-- 뷰 bigyo.view_message 구조 내보내기
+-- 임시 테이블을 제거하고 최종 VIEW 구조를 생성
+DROP TABLE IF EXISTS `view_message`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bigyo`@`%` SQL SECURITY DEFINER VIEW `view_message` AS select `Message`.`Num` AS `Num`,`Message`.`Send_Member` AS `Send_Member`,`Message`.`Receive_Member` AS `Receive_Member`,`Message`.`Send_Date` AS `Send_Date`,`Message`.`Read_Date` AS `Read_Date`,`Message`.`Delete_Check` AS `Delete_Check`,`Message`.`MessageContent` AS `MessageContent`,`m1`.`Name` AS `send_member_name`,`m2`.`Name` AS `receive_member_name` from ((`Message` join `Members` `m1` on((`Message`.`Send_Member` = `m1`.`Num`))) join `Members` `m2` on((`Message`.`Receive_Member` = `m2`.`Num`))) order by `Message`.`Send_Date`;
+
+
+-- 뷰 bigyo.view_singo_chuli 구조 내보내기
+-- 임시 테이블을 제거하고 최종 VIEW 구조를 생성
+DROP TABLE IF EXISTS `view_singo_chuli`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bigyo`@`%` SQL SECURITY DEFINER VIEW `view_singo_chuli` AS select `Members_Singo`.`num` AS `num`,`Members_Singo`.`Post_ID` AS `Post_ID`,`Members_Singo`.`Wongo` AS `Wongo`,`Members_Singo`.`Pigo` AS `Pigo`,`Members_Singo`.`Sayu` AS `Sayu`,`Members_Singo`.`Memo` AS `Memo`,`Members_Singo`.`Singo_Date` AS `Singo_Date`,`Members_Singo`.`Judgement` AS `Judgement`,`m1`.`Name` AS `wongo_name`,`m2`.`Name` AS `pigo_name` from ((`Members_Singo` join `Members` `m1` on((`Members_Singo`.`Wongo` = `m1`.`Num`))) join `Members` `m2` on((`Members_Singo`.`Pigo` = `m2`.`Num`))) where (`Members_Singo`.`Judgement` > 0) order by `Members_Singo`.`Singo_Date`;
+
+
+-- 뷰 bigyo.view_singo_list 구조 내보내기
+-- 임시 테이블을 제거하고 최종 VIEW 구조를 생성
+DROP TABLE IF EXISTS `view_singo_list`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bigyo`@`%` SQL SECURITY DEFINER VIEW `view_singo_list` AS select `Members_Singo`.`num` AS `num`,`Members_Singo`.`Post_ID` AS `Post_ID`,`Members_Singo`.`Wongo` AS `Wongo`,`Members_Singo`.`Pigo` AS `Pigo`,`Members_Singo`.`Sayu` AS `Sayu`,`Members_Singo`.`Memo` AS `Memo`,`Members_Singo`.`Singo_Date` AS `Singo_Date`,`Members_Singo`.`Judgement` AS `Judgement`,`m1`.`Name` AS `wongo_name`,`m2`.`Name` AS `pigo_name` from ((`Members_Singo` join `Members` `m1` on((`Members_Singo`.`Wongo` = `m1`.`Num`))) join `Members` `m2` on((`Members_Singo`.`Pigo` = `m2`.`Num`))) order by `Members_Singo`.`Singo_Date`;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
