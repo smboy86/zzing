@@ -38,4 +38,14 @@
         ?>
     </ul>
 </div>
+<!-- sidebar_latest start -->
+<div class="sidebar_latest">
+    <div class="headline">
+            <h3>배너</h3>
+    </div>
+    <?php
+       echo banner($position='sidebar', $type='order', $limit = '1', $start_tag='', $end_tag='')
+    ?>
+</div>
+
 <!-- sidebar_latest end -->
