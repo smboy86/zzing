@@ -618,7 +618,7 @@ nhn.husky.SE2M_TableTemplate = [
 				color				: "#666666"
 			},
 			{
-				padding				: "3px 4px 2px",
+				padding				: "3px 4px 2px",
 				borderBottom		: "1px solid #c7c7c7",
 				backgroundColor		: "#f3f3f3",
 				color				: "#666666"
@@ -19218,7 +19218,7 @@ nhn.DraggableLayer = jindo.$Class({
  * TOGGLE_ACTIVE_LAYER
  *
  * 액티브 레이어가 화면에 보이는 여부를 토글 한다.
- *
+ *
  * oLayer HTMLElement 레이어로 사용할 HTML Element
  * sOnOpenCmd string 화면에 보이는 경우 발생 할 메시지(옵션)
  * aOnOpenParam array sOnOpenCmd와 함께 넘겨줄 파라미터(옵션)

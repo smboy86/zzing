@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="title" content="ScoopThemes">
+    <meta name="ROBOTS" content="Bootstrap 3 Themes, Responsive Themes, Bootstrap 3 Responsive, Wordpress Themes, Clean Themes, Modern Themes, Flat Themes, Flat UI, UI Design, UX Design, Web design, responsive bootstrap, Jquery Plugins, Free Plugins, Premium Bootstrap themes, Bootstrap 3, Premium Web Templates, Bootstrap Templates, Bootstrap Responsive Templates, Admin, Dashboard, Admin Templates, Admin Responsive, Admin responsive themes, Java, Android, CI, Code, API">
+    <meta name="description" content="찡페이지 입니다. ">
+    <meta name="abstract" content="찡홈페이지 입니다.">
+   
+    <meta name="author" content="www.scoopthemes.com">
+    <meta name="publisher" content="www.scoopthemes.com">
+    <meta name="copyright" content="www.scoopthemes.com">
+    <meta name="revisit-after" content="2 days">
+    <meta name="naver-site-verification" content="0f68cf3ed4f5ba01e1b355d8460846049af86796"/>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="찡컴퍼니">
+    <meta property="og:description" content="Web, Develop, Design Incubator">
+    <meta property="og:image" content="https://zzing.co.kr/assets/img/zzinghome.jpg">
+    <meta property="og:url" content="https://zzing.co.kr">
+    
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    
+    <title>찡 Homepage</title>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    
+    <link rel="stylesheet" href="assets/css/font-awesome-animation.min.css">
+
+    <!-- siimple style -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    
+
+
+</head>
+
+<body>
+
+    <div class="cloud pos0 faa-float animated faa-fast">
+        <img src="assets/img/cloud.png" alt="Scoop Themes">
+    </div>
+
+    <div class="cloud pos1 fliped faa-float animated">
+        <img src="assets/img/cloud.png" alt="Scoop Themes">
+    </div>
+
+    <div class="cloud pos2 floating faa-passing animated faa-slow">
+        <img src="assets/img/cloud.png" alt="Scoop Themes">
+    </div>
+
+    <div class="cloud pos3 fliped faa-passing animated faa-slow">
+        <img src="assets/img/cloud.png" alt="Scoop Themes">
+    </div>
+
+
+    <div id="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 align-center">
+                    <img src="assets/img/welcome.png" alt="Home logo">
+                    <br/>
+                    <br/>
+                    <h2 class="subtitle">우리는 즐겁게 일하고, 웃으며 서로를 사랑합니다 &nbsp; :D</h2>
+                    <br/>
+             
+                    <form class="form-inline validate signup" action="" method="get" role="form">
+                        <input type="email" class="form-control" name="EMAIL" id="exampleInputEmail1" placeholder="Enter your name">
+                        <input type="submit" name="subscribe" value="Do it!" class="btn btn-theme">
+                    </form>
+                    <br/>
+                </div>
+                <div class="col-sm-12 align-center">
+                    <ul class="social-network social-circle">
+                        <li><a href="/ciboard" target="_blank" class="icoFacebook" title="찡보드"><i class="fa fa-bold"></i></a>
+                        </li>
+                        <li><a href="/chat" class="icoRss" title="찡채팅"><i class="fa fa-users"></i></a>
+                        </li>
+                        <li><a href="https://will.zzing.co.kr" class="icoGit" title="박성욱"><i class="fa fa-refresh fa-spin"></i></a>
+                        </li>
+                        <li><a href="#" class="icoGit" title="준비중"><i class="fa fa-gavel"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <p class="copyright">Copyright &copy; 2015 - ZZING Inc
+                    </p>
+                </div>
+            </div>
+            <div class ="row">
+            	<div class="col-lg-6 col-lg-offset-3">
+            		Template by <a href="http://scoopthemes.com">ScoopThemes</a>
+            	</div>
+            	
+            </div>
+            
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/assets/js/jquery.form-n-validate.js"></script>
+    <script>
+        
+$(document).ready( function () {
+    $("body").hide(); 
+    $("body").fadeIn(3000);
+   
+    $('#wrapper').height($(document).height());
+    // I only have one form on the page but you can be more specific if need be.
+    var $form = $('form');
+
+    if ( $form.length > 0 ) {
+        $('form input[type="submit"]').bind('click', function ( event ) {
+            if ( event ) event.preventDefault();
+            // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
+            //if ( $form.validate() ) { register($form); }
+            //You can play our services If you click on the icon below
+            appendResult('Nice to meet you ' + $('#exampleInputEmail1').val() + '<br/>Enjoy our services click to the icon below', 'error', 'exclamation');
+        });
+    }
+});
+
+function appendResult(userText , className, iconClass){
+  var resultHTML = "<div class='stretchLeft result "+ className + "'>" + userText + " <span class='fa fa-" + iconClass + "'></span>" + "</div>";
+  $('body').append(resultHTML);
+  $('.result').delay(10000).fadeOut('1000');
+}
+
+
+function register($form) {
+    $.ajax({
+        type: $form.attr('method'),
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        cache       : false,
+        dataType    : 'json',
+        contentType: "application/json; charset=utf-8",
+        error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
+        success     : function(data) {
+            if (data.result != "success") {
+                appendResult('Wrong Email Or You Are Already Registered, Try Again', 'error', 'exclamation');
+            } else {
+                // It worked, carry on...
+                appendResult('Successful, Check Your Email For Confirmation ', 'success', 'check');
+            }
+        }
+    });
+}
+    </script>
+         
+    
+<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
+f[z]=function(){
+(a.s=a.s||[]).push(arguments)};var a=f[z]._={
+},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
+f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
+0:+new Date};a.P=function(u){
+a.p[u]=new Date-a.p[0]};function s(){
+a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
+hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
+return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
+b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
+b.contentWindow[g].open()}catch(w){
+c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
+var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
+b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
+loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('3147-357-10-2082');/*]]>*/</script>
+<noscript><a href="https://www.olark.com/site/3147-357-10-2082/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58581340-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script> <script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "15921108cfc2e30"; wcs_do(); </script>
+
+
+</body>
+
+</html>

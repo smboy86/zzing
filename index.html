@@ -20,12 +20,9 @@
     <meta property="og:description" content="Web, Develop, Design Incubator">
     <meta property="og:image" content="https://zzing.co.kr/assets/img/zzinghome.jpg">
     <meta property="og:url" content="https://zzing.co.kr">
-
     
     <link rel="shortcut icon" href="assets/img/favicon.png">
     
-    
-
     <title>찡 Homepage</title>
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -85,13 +82,13 @@
                 </div>
                 <div class="col-sm-12 align-center">
                     <ul class="social-network social-circle">
-                        <li><a href="/ciboard" target="_blank" class="icoFacebook" title="찡보드"><i class="fa fa-bold"></i></a>
+                        <li><a href="/ciboard" target="_blank" class="icoFacebook" title="찡보드"><i class="fa fa-bold faa-shake animated fa-2x"></i></a>
                         </li>
-                        <li><a href="/chat" class="icoRss" title="찡채팅"><i class="fa fa-users"></i></a>
+                        <li><a href="/chat" class="icoRss" title="찡채팅"><i class="fa fa-users faa-shake animated fa-2x"></i></a>
                         </li>
-                        <li><a href="https://will.zzing.co.kr" class="icoGit" title="박성욱"><i class="fa fa-refresh fa-spin"></i></a>
+                        <li><a href="http://gosite.zzing.co.kr" class="icoGit" title="goSite"><i class="fa fa-hand-o-right faa-shake animated fa-2x"></i></a>
                         </li>
-                        <li><a href="#" class="icoGit" title="준비중"><i class="fa fa-gavel"></i></a>
+                        <li><a href="http://corcordium.co.kr/main.php" class="icoGit" title="준비중"><i class="fa fa-ticket faa-shake animated fa-2x"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -118,6 +115,9 @@
     <script>
         
 $(document).ready( function () {
+    $("body").hide(); 
+    $("body").fadeIn(3000);
+   
     $('#wrapper').height($(document).height());
     // I only have one form on the page but you can be more specific if need be.
     var $form = $('form');
